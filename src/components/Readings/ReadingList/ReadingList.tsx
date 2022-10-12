@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { readings } from "../../../../fakeData";
+import ReadingListItem from "../ReadingListItem";
 
 function ReadingList() {
 	return (
@@ -9,12 +10,7 @@ function ReadingList() {
 			<Text style={styles.baseText}>
 				<View>
 					{readings.map((reading, index) => (
-						<View key={reading.id + index}>
-							<Text style={styles.titleText}>{reading.id}</Text>
-							<Text style={styles.subText}>
-								{reading.conversion_coefficient}
-							</Text>
-						</View>
+						<ReadingListItem key={reading.id + index} reading={reading} />
 					))}
 				</View>
 			</Text>
