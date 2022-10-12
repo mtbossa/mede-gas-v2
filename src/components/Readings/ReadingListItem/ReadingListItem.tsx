@@ -9,43 +9,29 @@ interface Props {
 function ReadingListItem({ reading }: Props) {
 	return (
 		<View style={styles.card}>
-			<View>
-				<Text style={styles.baseText}>
-					<Text>
-						<Text style={styles.title}>Data da leitura:</Text>{" "}
-						{reading.created_at}
-						{"\n"}
-					</Text>
-					<Text>
-						<Text style={styles.title}>Valor da leitura:</Text>{" "}
-						{reading.cubic_meters} m³{"\n"}
-					</Text>
-					<Text>
-						<Text style={styles.title}>Preço (m³):</Text> R${" "}
-						{reading.cubic_meter_price} / m³{"\n"}
-					</Text>
-					<Text>
-						<Text style={styles.title}>Coeficiente de conversão:</Text>{" "}
-						{reading.conversion_coefficient}
-					</Text>
-				</Text>
-			</View>
+			<Text style={styles.title}>{reading.created_at}</Text>
+			<Text style={styles.subTitle}>{reading.cubic_meters} m³</Text>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	baseText: {
-		fontSize: 20,
-		flexDirection: "row",
-	},
 	title: {
+		fontSize: 20,
 		fontWeight: "bold",
+	},
+	subTitle: {
+		fontSize: 18,
+		fontWeight: "normal",
 	},
 	card: {
 		borderRadius: 5,
+		borderColor: "#111",
+		borderWidth: 5,
 		backgroundColor: "#FFF",
 		padding: 10,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 });
 
