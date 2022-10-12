@@ -5,9 +5,19 @@ import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
 export default function App() {
 	return (
-		<SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+		<SafeAreaView
+			style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
+		>
 			<StatusBar />
-			<ReadingList />
+			<View>
+				<ReadingList />
+			</View>
 		</SafeAreaView>
 	);
 }
+
+const styles = StyleSheet.create({
+	defaultBackgroundColor: {
+		backgroundColor: "#EEE",
+	},
+});

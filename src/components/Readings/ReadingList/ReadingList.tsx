@@ -6,33 +6,22 @@ import ReadingListItem from "../ReadingListItem";
 
 function ReadingList() {
 	return (
-		<ScrollView style={styles.mainContainer}>
-			<Text style={styles.baseText}>
-				<View>
-					{readings.map((reading, index) => (
-						<ReadingListItem key={reading.id + index} reading={reading} />
-					))}
+		<ScrollView style={styles.scrollView}>
+			{readings.map((reading, index) => (
+				<View key={reading.id + index} style={styles.listItem}>
+					<ReadingListItem reading={reading} />
 				</View>
-			</Text>
+			))}
 		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
-	mainContainer: {
-		flex: 1,
-		backgroundColor: "#fff",
-		width: 400,
+	scrollView: {
+		padding: 10,
 	},
-	baseText: {
-		fontSize: 5,
-	},
-	titleText: {
-		fontSize: 20,
-		fontWeight: "bold",
-	},
-	subText: {
-		fontWeight: "normal",
+	listItem: {
+		paddingBottom: 20,
 	},
 });
 
