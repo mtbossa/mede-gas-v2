@@ -1,24 +1,47 @@
 import React, { useState } from "react";
-import MaskInput from "react-native-mask-input";
-
-const READING_MASK = [/\d/, /\d/, /\d/, /\d/, /\d/, ",", /\d/, /\d/, /\d/]; // 99999,999
+import { TextInput, StyleSheet } from "react-native";
+import numeral from "numeral";
 
 function ReadingInput() {
-	const [readingOne, setReadingOne] = useState("");
+	const [reading, setReading] = useState("");
 
 	return (
-		<MaskInput
-			keyboardType="numeric"
-			value={readingOne}
-			onChangeText={(masked, unmasked) => {
-				setReadingOne(masked);
-				// assuming you typed "9" all the way:
-				console.log(masked); // (99) 99999-9999
-				console.log(unmasked); // 99999999999
+		<TextInput
+			keyboardType="number-pad"
+			style={styles.input}
+			value={reading}
+			maxLength={10}
+			onChangeText={inputText => {
+				inputText = inputText.replace(/[^0-9,]/g, "");
+				if ((inputText.match(new RegExp(",", "g")) || []).length > 1) return;
+				if (inputText.length > 9) return;
+				if (inputText.length > 5 && !inputText.includes(",")) {
+					inputText = inputText.slice(0, 5) + "," + inputText.slice(5);
+				}
+				if (inputText.includes(",")) {
+					console.log("here"); //logs 4
+					
+					const [int, decimals] = inputText.split(",");
+					if (decimals.length > 3) {
+						return;
+					}
+				}
+				console.log({ inputText });
+				const numeralOb = numeral(inputText);
+				console.log({ numeralOb });
+				setReading(inputText);
 			}}
-			mask={READING_MASK}
 		/>
 	);
 }
+
+const styles = StyleSheet.create({
+	input: {
+		height: 40,
+		margin: 12,
+		borderWidth: 1,
+		padding: 10,
+	},
+});
 
 export default ReadingInput;

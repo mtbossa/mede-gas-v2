@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import numeral from "numeral";
 import { useState } from "react";
 import {
 	Button,
@@ -11,6 +12,29 @@ import {
 import ReadingInput from "./src/components/Calculator/ReadingInput";
 import ReadingList from "./src/components/Readings/ReadingList";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
+
+// load a locale
+numeral.register('locale', 'pt-BR', {
+	delimiters: {
+			thousands: '',
+			decimal: ','
+	},
+	abbreviations: {
+			thousand: 'k',
+			million: 'm',
+			billion: 'b',
+			trillion: 't'
+	},
+	ordinal : function (number) {
+			return number === 1 ? 'er' : 'ème';
+	},
+	currency: {
+			symbol: 'R$'
+	}
+});
+
+// switch between locales
+numeral.locale("pt-BR");
 
 export default function App() {
 	return (
