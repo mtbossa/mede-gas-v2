@@ -15,6 +15,7 @@ import {
 type ReadingInputProps = {} & TextInputProps;
 
 function ReadingInput({
+	value,
 	onChangeText,
 	...inputPropsTextInputProps
 }: ReadingInputProps) {
@@ -22,8 +23,9 @@ function ReadingInput({
 		<TextInput
 			keyboardType="number-pad"
 			style={styles.input}
-			maxLength={10}
 			placeholder="00000,000"
+			maxLength={10}
+			value={value}
 			onChangeText={inputText => {
 				if (!validReadingInput(inputText)) return;
 				onChangeText(

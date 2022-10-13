@@ -53,7 +53,7 @@ export default function App() {
 				<Text>1.</Text>
 				<ReadingInput value={lowerReading} onChangeText={setLowerReading} />
 				<Text>2.</Text>
-				<ReadingInput value={lowerReading} onChangeText={setLowerReading} />
+				<ReadingInput value={biggerReading} onChangeText={setBiggerReading} />
 				<Text>Preço do gás (kg/gás)</Text>
 				<TextInput style={styles.input} />
 				<Text>Coeficiente de conversão</Text>
