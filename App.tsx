@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from "react";
 import {
 	Button,
 	SafeAreaView,
@@ -7,6 +8,7 @@ import {
 	TextInput,
 	View,
 } from "react-native";
+import ReadingInput from "./src/components/Calculator/ReadingInput";
 import ReadingList from "./src/components/Readings/ReadingList";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
@@ -19,9 +21,9 @@ export default function App() {
 			<View>
 				<Text>Digite ou selecione leituras</Text>
 				<Text>1.</Text>
-				<TextInput style={styles.input} />
+				<ReadingInput />
 				<Text>2.</Text>
-				<TextInput style={styles.input} />
+				<ReadingInput />
 				<Text>Preço do gás (kg/gás)</Text>
 				<TextInput style={styles.input} />
 				<Text>Coeficiente de conversão</Text>

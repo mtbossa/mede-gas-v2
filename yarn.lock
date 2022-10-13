@@ -5267,6 +5267,11 @@ react-native-gradle-plugin@^0.0.7:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
   integrity sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g==
 
+react-native-mask-input@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-mask-input/-/react-native-mask-input-1.2.2.tgz#cad1b3b35b198ce3523e4bc32ac2d5c8e52bb4af"
+  integrity sha512-AJtyDzUgXAiUZWe6jtf4sl5FV5q603AUR71+ma2SqI2YOTQr9exOPn8ZowC/n5KE0aL/YB9dCKnf+qbd/a082w==
+
 react-native@0.69.6:
   version "0.69.6"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.69.6.tgz#cdd1a5757d902b91b165c28fdda4e518ed6f683a"
