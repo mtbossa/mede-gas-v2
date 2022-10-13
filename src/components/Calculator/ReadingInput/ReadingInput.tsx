@@ -20,15 +20,12 @@ function ReadingInput() {
 				}
 				if (inputText.includes(",")) {
 					console.log("here"); //logs 4
-					
+
 					const [int, decimals] = inputText.split(",");
 					if (decimals.length > 3) {
 						return;
 					}
 				}
-				console.log({ inputText });
-				const numeralOb = numeral(inputText);
-				console.log({ numeralOb });
 				setReading(inputText);
 			}}
 		/>
