@@ -5,7 +5,7 @@ import {
 	addCommaIfNeeded,
 	removeNonNumericAndNonCommaFromString,
 	validReadingInput,
-} from "../../../services/ReadingInputService";
+} from "../../../services/ReadingInputValidator";
 
 function ReadingInput() {
 	const [reading, setReading] = useState("");
