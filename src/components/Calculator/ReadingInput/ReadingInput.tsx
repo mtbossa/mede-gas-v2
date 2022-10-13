@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { TextInput, StyleSheet, TextInputProps } from "react-native";
 import numeral from "numeral";
 import {
 	addCommaIfNeeded,
@@ -7,22 +7,30 @@ import {
 	validReadingInput,
 } from "../../../services/ReadingInputValidator";
 
-function ReadingInput() {
-	const [reading, setReading] = useState("");
+// interface ReadingInputProps {
+// 	setValue: (value: string) => void;
+// 	value: string;
+// }
 
+type ReadingInputProps = {} & TextInputProps;
+
+function ReadingInput({
+	onChangeText,
+	...inputPropsTextInputProps
+}: ReadingInputProps) {
 	return (
 		<TextInput
 			keyboardType="number-pad"
 			style={styles.input}
-			value={reading}
 			maxLength={10}
 			placeholder="00000,000"
 			onChangeText={inputText => {
 				if (!validReadingInput(inputText)) return;
-				setReading(
+				onChangeText(
 					addCommaIfNeeded(removeNonNumericAndNonCommaFromString(inputText))
 				);
 			}}
+			{...inputPropsTextInputProps}
 		/>
 	);
 }

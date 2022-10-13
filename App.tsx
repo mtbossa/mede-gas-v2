@@ -3,6 +3,7 @@ import numeral from "numeral";
 import { useState } from "react";
 import {
 	Button,
+	GestureResponderEvent,
 	SafeAreaView,
 	StyleSheet,
 	Text,
@@ -14,29 +15,34 @@ import ReadingList from "./src/components/Readings/ReadingList";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
 // load a locale
-numeral.register('locale', 'pt-BR', {
+numeral.register("locale", "pt-BR", {
 	delimiters: {
-			thousands: '',
-			decimal: ','
+		thousands: "",
+		decimal: ",",
 	},
 	abbreviations: {
-			thousand: 'k',
-			million: 'm',
-			billion: 'b',
-			trillion: 't'
+		thousand: "k",
+		million: "m",
+		billion: "b",
+		trillion: "t",
 	},
-	ordinal : function (number) {
-			return number === 1 ? 'er' : 'ème';
+	ordinal: function (number) {
+		return number === 1 ? "er" : "ème";
 	},
 	currency: {
-			symbol: 'R$'
-	}
+		symbol: "R$",
+	},
 });
 
 // switch between locales
 numeral.locale("pt-BR");
 
 export default function App() {
+	const [lowerReading, setLowerReading] = useState("");
+	const [biggerReading, setBiggerReading] = useState("");
+
+	function calculate($event: GestureResponderEvent) {}
+
 	return (
 		<SafeAreaView
 			style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
@@ -45,14 +51,14 @@ export default function App() {
 			<View>
 				<Text>Digite ou selecione leituras</Text>
 				<Text>1.</Text>
-				<ReadingInput />
+				<ReadingInput value={lowerReading} onChangeText={setLowerReading} />
 				<Text>2.</Text>
-				<ReadingInput />
+				<ReadingInput value={lowerReading} onChangeText={setLowerReading} />
 				<Text>Preço do gás (kg/gás)</Text>
 				<TextInput style={styles.input} />
 				<Text>Coeficiente de conversão</Text>
 				<TextInput style={styles.input} />
-				<Button title="Calcular" />
+				<Button title="Calcular" onPress={calculate} />
 				<Text>Resultado</Text>
 				<View>
 					<Text>Diferença (m3): 50 m3 | 5 kg/gás</Text>
