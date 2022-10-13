@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import {
+	Button,
 	SafeAreaView,
-	ScrollView,
 	StyleSheet,
 	Text,
 	TextInput,
@@ -22,7 +22,16 @@ export default function App() {
 				<TextInput style={styles.input} />
 				<Text>2.</Text>
 				<TextInput style={styles.input} />
+				<Text>Preço do gás (kg/gás)</Text>
+				<TextInput style={styles.input} />
+				<Text>Coeficiente de conversão</Text>
+				<TextInput style={styles.input} />
+				<Button title="Calcular" />
 				<Text>Resultado</Text>
+				<View>
+					<Text>Diferença (m3): 50 m3 | 5 kg/gás</Text>
+					<Text>Gasto (R$): R$ 50,00</Text>
+				</View>
 			</View>
 		</SafeAreaView>
 	);
