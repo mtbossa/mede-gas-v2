@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import numeral from "numeral";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Button,
 	GestureResponderEvent,
@@ -10,38 +9,42 @@ import {
 	TextInput,
 	View,
 } from "react-native";
+import MaskInput, { Masks } from "react-native-mask-input";
+
 import ReadingInput from "./src/components/Calculator/ReadingInput";
-import ReadingList from "./src/components/Readings/ReadingList";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
-// load a locale
-numeral.register("locale", "pt-BR", {
-	delimiters: {
-		thousands: "",
-		decimal: ",",
-	},
-	abbreviations: {
-		thousand: "k",
-		million: "m",
-		billion: "b",
-		trillion: "t",
-	},
-	ordinal: function (number) {
-		return number === 1 ? "er" : "ème";
-	},
-	currency: {
-		symbol: "R$",
-	},
-});
-
-// switch between locales
-numeral.locale("pt-BR");
+import "./src/numeral";
+import { calculateGasSpentValues } from "./src/services/GasCalculator";
+import numeral from "numeral";
+import { removeNonNumericAndNonCommaFromString } from "./src/services/ReadingInputValidator";
 
 export default function App() {
 	const [lowerReading, setLowerReading] = useState("");
 	const [biggerReading, setBiggerReading] = useState("");
+	const [gasPriceByKg, setGasPriceByKg] = useState("");
+	const [conversionCoefficient, setConversionCoefficient] = useState("");
+	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
 
-	function calculate($event: GestureResponderEvent) {}
+	useEffect(() => {
+		const allNecessaryValuesAreNotNull =
+			lowerReading && biggerReading && gasPriceByKg && conversionCoefficient;
+
+		allNecessaryValuesAreNotNull
+			? setCalculateButtonDisabled(false)
+			: setCalculateButtonDisabled(true);
+	}, [lowerReading, biggerReading, gasPriceByKg, conversionCoefficient]);
+
+	function calculate($event: GestureResponderEvent) {
+		const valuesAsNumber = {
+			lowerReading: numeral(lowerReading),
+			biggerReading: numeral(biggerReading),
+			gasPriceByKg: numeral(gasPriceByKg),
+			conversionCoefficient: numeral(conversionCoefficient),
+		};
+
+		console.log(valuesAsNumber);
+	}
 
 	return (
 		<SafeAreaView
@@ -55,10 +58,29 @@ export default function App() {
 				<Text>2.</Text>
 				<ReadingInput value={biggerReading} onChangeText={setBiggerReading} />
 				<Text>Preço do gás (kg/gás)</Text>
-				<TextInput style={styles.input} />
+				<MaskInput
+					keyboardType="decimal-pad"
+					style={styles.input}
+					mask={Masks.BRL_CURRENCY}
+					value={gasPriceByKg}
+					onChangeText={setGasPriceByKg}
+				/>
 				<Text>Coeficiente de conversão</Text>
-				<TextInput style={styles.input} />
-				<Button title="Calcular" onPress={calculate} />
+				<TextInput
+					keyboardType="decimal-pad"
+					style={styles.input}
+					value={conversionCoefficient}
+					onChangeText={text =>
+						setConversionCoefficient(
+							removeNonNumericAndNonCommaFromString(text)
+						)
+					}
+				/>
+				<Button
+					title="Calcular"
+					onPress={calculate}
+					disabled={calculateButtonDisabled}
+				/>
 				<Text>Resultado</Text>
 				<View>
 					<Text>Diferença (m3): 50 m3 | 5 kg/gás</Text>
