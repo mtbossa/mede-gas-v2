@@ -19,12 +19,17 @@ export function calculateGasMoneyExpensesBasesOnPriceByKg(
 	return amountSpentInKg * gasPriceByKg;
 }
 
-export function calculateGasSpentValues(
-	lastReadingCubicMeter: number,
-	firstReadingCubicMeter: number,
-	conversionCoefficient: number,
-	gasPriceByKg: number
-) {
+export function calculateGasSpentValues({
+	lastReadingCubicMeter,
+	firstReadingCubicMeter,
+	conversionCoefficient,
+	gasPriceByKg,
+}: {
+	lastReadingCubicMeter: number;
+	firstReadingCubicMeter: number;
+	conversionCoefficient: number;
+	gasPriceByKg: number;
+}) {
 	const diffInCubicMeter = calculateDiff(
 		lastReadingCubicMeter,
 		firstReadingCubicMeter
@@ -35,11 +40,11 @@ export function calculateGasSpentValues(
 	);
 
 	return {
-		diffInCubicMeter,
-		diffInKg,
+		diffInCubicMeter: diffInCubicMeter.toFixed(3),
+		diffInKg: diffInKg.toFixed(2),
 		moneySpent: calculateGasMoneyExpensesBasesOnPriceByKg(
 			diffInKg,
 			gasPriceByKg
-		),
+		).toFixed(2),
 	};
 }

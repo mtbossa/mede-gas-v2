@@ -35,15 +35,22 @@ export default function App() {
 			: setCalculateButtonDisabled(true);
 	}, [lowerReading, biggerReading, gasPriceByKg, conversionCoefficient]);
 
-	function calculate($event: GestureResponderEvent) {
-		const valuesAsNumber = {
-			lowerReading: numeral(lowerReading),
-			biggerReading: numeral(biggerReading),
-			gasPriceByKg: numeral(gasPriceByKg),
-			conversionCoefficient: numeral(conversionCoefficient),
-		};
+	function calculate() {
+		let valuesAsNumbers = Object.fromEntries(
+			Object.entries({
+				biggerReading,
+				lowerReading,
+				conversionCoefficient,
+				gasPriceByKg,
+			}).map(([k, v]) => [k, numeral(v).value()])
+		);
 
-		console.log(valuesAsNumber);
+		const { diffInCubicMeter, diffInKg, moneySpent } = calculateGasSpentValues({
+			lastReadingCubicMeter: valuesAsNumbers.biggerReading,
+			firstReadingCubicMeter: valuesAsNumbers.lowerReading,
+			conversionCoefficient: valuesAsNumbers.conversionCoefficient,
+			gasPriceByKg: valuesAsNumbers.gasPriceByKg,
+		});
 	}
 
 	return (
