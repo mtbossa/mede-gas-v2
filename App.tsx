@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import {
 	Button,
 	GestureResponderEvent,
+	NativeSyntheticEvent,
 	SafeAreaView,
 	StyleSheet,
 	Text,
 	TextInput,
+	TextInputChangeEventData,
 	View,
 } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
@@ -31,7 +33,11 @@ export default function App() {
 	const [gasPriceByKg, setGasPriceByKg] = useState("");
 	const [conversionCoefficient, setConversionCoefficient] = useState("");
 	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
-	const [result, setResult] = useState<Result | null>(null);
+	const [result, setResult] = useState<Result>({
+		diffInKg: "0",
+		diffInCubicMeter: "0",
+		moneySpent: "R$ 0,00",
+	});
 
 	useEffect(() => {
 		const allNecessaryValuesAreNotNull =
@@ -59,15 +65,14 @@ export default function App() {
 			gasPriceByKg: valuesAsNumbers.gasPriceByKg,
 		});
 
-		const formattedResults: Result = {
-			diffInCubicMeter: numeral(calcResults.diffInCubicMeter).format(
-				"'0,0.000'"
-			),
-			diffInKg: numeral(calcResults.diffInKg).format("'0,0.000'"),
-			moneySpent: numeral(calcResults.moneySpent).format("'$0.0,00'"),
+		const formattedResults = {
+			diffInCubicMeter: numeral(calcResults.diffInCubicMeter).format("0,0.000"),
+			diffInKg: numeral(calcResults.diffInKg).format("0,0.000"),
+			moneySpent: numeral(calcResults.moneySpent).format("$ 0,0.00"),
 		};
 
 		setResult(formattedResults);
+		setCalculateButtonDisabled(true);
 	}
 
 	return (
@@ -108,9 +113,10 @@ export default function App() {
 				<Text>Resultado</Text>
 				<View>
 					<Text>
-						Diferença: {result?.diffInCubicMeter} m3 | {result?.diffInKg} kg/gás
+						Diferença: {result?.diffInCubicMeter ?? 0} m3 |{" "}
+						{result?.diffInKg ?? 0} kg/gás
 					</Text>
-					<Text>Gasto (R$): R$ {result?.moneySpent}</Text>
+					<Text>Gasto: {result?.moneySpent}</Text>
 				</View>
 			</View>
 		</SafeAreaView>
