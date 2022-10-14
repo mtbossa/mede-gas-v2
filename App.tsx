@@ -19,12 +19,19 @@ import { calculateGasSpentValues } from "./src/services/GasCalculator";
 import numeral from "numeral";
 import { removeNonNumericAndNonCommaFromString } from "./src/services/ReadingInputValidator";
 
+interface Result {
+	diffInKg: string;
+	diffInCubicMeter: string;
+	moneySpent: string;
+}
+
 export default function App() {
 	const [lowerReading, setLowerReading] = useState("");
 	const [biggerReading, setBiggerReading] = useState("");
 	const [gasPriceByKg, setGasPriceByKg] = useState("");
 	const [conversionCoefficient, setConversionCoefficient] = useState("");
 	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
+	const [result, setResult] = useState<Result | null>(null);
 
 	useEffect(() => {
 		const allNecessaryValuesAreNotNull =
@@ -45,12 +52,14 @@ export default function App() {
 			}).map(([k, v]) => [k, numeral(v).value()])
 		);
 
-		const { diffInCubicMeter, diffInKg, moneySpent } = calculateGasSpentValues({
+		const result: Result = calculateGasSpentValues({
 			lastReadingCubicMeter: valuesAsNumbers.biggerReading,
 			firstReadingCubicMeter: valuesAsNumbers.lowerReading,
 			conversionCoefficient: valuesAsNumbers.conversionCoefficient,
 			gasPriceByKg: valuesAsNumbers.gasPriceByKg,
 		});
+
+		setResult(result);
 	}
 
 	return (
@@ -90,8 +99,10 @@ export default function App() {
 				/>
 				<Text>Resultado</Text>
 				<View>
-					<Text>Diferença (m3): 50 m3 | 5 kg/gás</Text>
-					<Text>Gasto (R$): R$ 50,00</Text>
+					<Text>
+						Diferença: {result.diffInCubicMeter} m3 | {result.diffInKg} kg/gás
+					</Text>
+					<Text>Gasto (R$): R$ {result.moneySpent}</Text>
 				</View>
 			</View>
 		</SafeAreaView>

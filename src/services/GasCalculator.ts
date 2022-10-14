@@ -19,6 +19,12 @@ export function calculateGasMoneyExpensesBasesOnPriceByKg(
 	return amountSpentInKg * gasPriceByKg;
 }
 
+interface Result {
+	diffInKg: string,
+	diffInCubicMeter: string,
+	moneySpent: string,
+}
+
 export function calculateGasSpentValues({
 	lastReadingCubicMeter,
 	firstReadingCubicMeter,
