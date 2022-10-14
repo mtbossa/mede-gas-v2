@@ -27,11 +27,21 @@ interface Result {
 	moneySpent: string;
 }
 
+interface CalculatorForm {
+	lowerReading: string;
+	biggerReading: string;
+	gasPriceByKg: string;
+	conversionCoefficient: string;
+}
+
 export default function App() {
-	const [lowerReading, setLowerReading] = useState("");
-	const [biggerReading, setBiggerReading] = useState("");
-	const [gasPriceByKg, setGasPriceByKg] = useState("");
-	const [conversionCoefficient, setConversionCoefficient] = useState("");
+	const [calculatorFormValues, setCalculatorFormValues] =
+		useState<CalculatorForm>({
+			lowerReading: "",
+			biggerReading: "",
+			gasPriceByKg: "",
+			conversionCoefficient: "",
+		});
 	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
 	const [result, setResult] = useState<Result>({
 		diffInKg: "0",
@@ -40,22 +50,21 @@ export default function App() {
 	});
 
 	useEffect(() => {
-		const allNecessaryValuesAreNotNull =
-			lowerReading && biggerReading && gasPriceByKg && conversionCoefficient;
+		const allNecessaryValuesAreNotNull = Object.values(
+			calculatorFormValues
+		).every(value => !!value);
 
 		allNecessaryValuesAreNotNull
 			? setCalculateButtonDisabled(false)
 			: setCalculateButtonDisabled(true);
-	}, [lowerReading, biggerReading, gasPriceByKg, conversionCoefficient]);
+	}, [calculatorFormValues]);
 
 	function calculate() {
 		let valuesAsNumbers = Object.fromEntries(
-			Object.entries({
-				biggerReading,
-				lowerReading,
-				conversionCoefficient,
-				gasPriceByKg,
-			}).map(([k, v]) => [k, numeral(v).value()])
+			Object.entries(calculatorFormValues).map(([k, v]) => [
+				k,
+				numeral(v).value(),
+			])
 		);
 
 		const calcResults = calculateGasSpentValues({
@@ -83,26 +92,49 @@ export default function App() {
 			<View>
 				<Text>Digite ou selecione leituras</Text>
 				<Text>1.</Text>
-				<ReadingInput value={lowerReading} onChangeText={setLowerReading} />
+				<ReadingInput
+					value={calculatorFormValues.lowerReading}
+					onChangeText={value =>
+						setCalculatorFormValues(oldValues => ({
+							...oldValues,
+							lowerReading: value,
+						}))
+					}
+				/>
 				<Text>2.</Text>
-				<ReadingInput value={biggerReading} onChangeText={setBiggerReading} />
+				<ReadingInput
+					value={calculatorFormValues.biggerReading}
+					onChangeText={value =>
+						setCalculatorFormValues(oldValues => ({
+							...oldValues,
+							biggerReading: value,
+						}))
+					}
+				/>
 				<Text>Preço do gás (kg/gás)</Text>
 				<MaskInput
 					keyboardType="decimal-pad"
 					style={styles.input}
 					mask={Masks.BRL_CURRENCY}
-					value={gasPriceByKg}
-					onChangeText={setGasPriceByKg}
+					value={calculatorFormValues.gasPriceByKg}
+					onChangeText={value =>
+						setCalculatorFormValues(oldValues => ({
+							...oldValues,
+							gasPriceByKg: value,
+						}))
+					}
 				/>
 				<Text>Coeficiente de conversão</Text>
 				<TextInput
 					keyboardType="decimal-pad"
 					style={styles.input}
-					value={conversionCoefficient}
-					onChangeText={text =>
-						setConversionCoefficient(
-							removeNonNumericAndNonCommaFromString(text)
-						)
+					value={calculatorFormValues.conversionCoefficient}
+					onChangeText={value =>
+						setCalculatorFormValues(oldValues => ({
+							...oldValues,
+							conversionCoefficient:
+								removeNonNumericAndNonCommaFromString(value),
+						}))
 					}
 				/>
 				<Button
