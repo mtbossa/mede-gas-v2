@@ -46,11 +46,11 @@ export function calculateGasSpentValues({
 	);
 
 	return {
-		diffInCubicMeter: diffInCubicMeter.toFixed(3),
-		diffInKg: diffInKg.toFixed(2),
+		diffInCubicMeter: diffInCubicMeter,
+		diffInKg: diffInKg,
 		moneySpent: calculateGasMoneyExpensesBasesOnPriceByKg(
 			diffInKg,
 			gasPriceByKg
-		).toFixed(2),
+		),
 	};
 }

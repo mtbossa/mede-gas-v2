@@ -52,14 +52,22 @@ export default function App() {
 			}).map(([k, v]) => [k, numeral(v).value()])
 		);
 
-		const result: Result = calculateGasSpentValues({
+		const calcResults = calculateGasSpentValues({
 			lastReadingCubicMeter: valuesAsNumbers.biggerReading,
 			firstReadingCubicMeter: valuesAsNumbers.lowerReading,
 			conversionCoefficient: valuesAsNumbers.conversionCoefficient,
 			gasPriceByKg: valuesAsNumbers.gasPriceByKg,
 		});
 
-		setResult(result);
+		const formattedResults: Result = {
+			diffInCubicMeter: numeral(calcResults.diffInCubicMeter).format(
+				"'0,0.000'"
+			),
+			diffInKg: numeral(calcResults.diffInKg).format("'0,0.000'"),
+			moneySpent: numeral(calcResults.moneySpent).format("'$0.0,00'"),
+		};
+
+		setResult(formattedResults);
 	}
 
 	return (
@@ -100,9 +108,9 @@ export default function App() {
 				<Text>Resultado</Text>
 				<View>
 					<Text>
-						Diferença: {result.diffInCubicMeter} m3 | {result.diffInKg} kg/gás
+						Diferença: {result?.diffInCubicMeter} m3 | {result?.diffInKg} kg/gás
 					</Text>
-					<Text>Gasto (R$): R$ {result.moneySpent}</Text>
+					<Text>Gasto (R$): R$ {result?.moneySpent}</Text>
 				</View>
 			</View>
 		</SafeAreaView>
