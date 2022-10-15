@@ -1,16 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from "react";
-import {
-	Button,
-	GestureResponderEvent,
-	NativeSyntheticEvent,
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	TextInput,
-	TextInputChangeEventData,
-	View,
-} from "react-native";
+import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 
 import ReadingInput from "./src/components/Calculator/ReadingInput";
@@ -20,6 +10,7 @@ import "./src/numeral";
 import { calculateGasSpentValues } from "./src/services/GasCalculator";
 import numeral from "numeral";
 import { removeNonNumericAndNonCommaFromString } from "./src/services/ReadingInputValidator";
+import TextInput from "./src/components/Shared/TextInput";
 
 interface Result {
 	diffInKg: string;
@@ -90,7 +81,6 @@ export default function App() {
 		>
 			<StatusBar />
 			<View>
-				<Text>Digite ou selecione leituras</Text>
 				<Text>1.</Text>
 				<ReadingInput
 					value={calculatorFormValues.lowerReading}
@@ -157,7 +147,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
 	defaultBackgroundColor: {
-		backgroundColor: "#aaa",
+		backgroundColor: "#B7AD99",
 	},
 	input: {
 		height: 40,
