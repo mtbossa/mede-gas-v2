@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { TextInputProps } from "react-native";
+import { TextInput, TextInputProps } from "react-native";
 import numeral from "numeral";
 import {
 	addCommaIfNeeded,
 	removeNonNumericAndNonCommaFromString,
 	validReadingInput,
 } from "../../../services/ReadingInputValidator";
-import TextInput from "../../Shared/TextInput";
 
 type ReadingInputProps = {} & TextInputProps;
 

@@ -81,7 +81,6 @@ export default function App() {
 		>
 			<StatusBar />
 			<View>
-				<AppTextInput />
 				<Text>Digite ou selecione leituras</Text>
 				<Text>1.</Text>
 				<ReadingInput
