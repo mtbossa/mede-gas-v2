@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 
@@ -11,6 +11,9 @@ import { calculateGasSpentValues } from "./src/services/GasCalculator";
 import numeral from "numeral";
 import { removeNonNumericAndNonCommaFromString } from "./src/services/ReadingInputValidator";
 import AppTextInput from "./src/components/Shared/AppTextInput";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import AppText from "./src/components/Shared/AppText";
 
 interface Result {
 	diffInKg: string;
@@ -25,7 +28,21 @@ interface CalculatorForm {
 	conversionCoefficient: string;
 }
 
+let customFonts = {
+	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
+};
+
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
+	const [fontsLoaded] = Font.useFonts(customFonts);
+
+	const onLayoutRootView = useCallback(async () => {
+		if (fontsLoaded) {
+			await SplashScreen.hideAsync();
+		}
+	}, [fontsLoaded]);
+
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>({
 			lowerReading: "",
@@ -75,13 +92,22 @@ export default function App() {
 		setCalculateButtonDisabled(true);
 	}
 
+	if (!fontsLoaded) {
+		return null;
+	}
+
 	return (
 		<SafeAreaView
+			onLayout={onLayoutRootView}
 			style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
 		>
 			<StatusBar />
 			<View>
-				<Text>Digite ou selecione leituras</Text>
+				<AppText>
+					<Text style={{ fontWeight: "bold", fontSize: 20, }}>
+						Digite ou selecione leituras
+					</Text>
+				</AppText>
 				<Text>1.</Text>
 				<ReadingInput
 					value={calculatorFormValues.lowerReading}

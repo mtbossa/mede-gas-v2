@@ -8,7 +8,8 @@ function AppTextInput({ ...inputPropsTextInputProps }: TextInputProps) {
 const styles = StyleSheet.create({
 	input: {
 		borderRadius: 3,
-		elevation: 5,
+		padding: 10,
+		elevation: 2,
 		backgroundColor: "#FFFFF3",
 	},
 });
