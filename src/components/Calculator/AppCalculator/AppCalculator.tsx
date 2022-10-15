@@ -89,7 +89,7 @@ function AppCalculator() {
 			</View>
 
 			<AppCalculatorReadingInputs
-				style={{ marginVertical: 10 }}
+				style={{ marginBottom: 10 }}
 				biggerReading={calculatorFormValues.biggerReading}
 				lowerReading={calculatorFormValues.lowerReading}
 				onChangeValue={(field, value) =>
@@ -116,7 +116,7 @@ function AppCalculator() {
 				/>
 			</View>
 
-			<View style={{ width: "100%", marginVertical: 10 }}>
+			<View style={{ width: "100%", marginTop: 10 }}>
 				<AppTextInputLabel>Coeficiente de conversão</AppTextInputLabel>
 				<AppTextInput
 					style={styles.input}
@@ -132,11 +132,15 @@ function AppCalculator() {
 				/>
 			</View>
 
-			<Button
-				title="Calcular"
-				onPress={calculate}
-				disabled={calculateButtonDisabled}
-			/>
+			<View style={{ width: "50%", marginVertical: 40 }}>
+				<Button
+					title="Calcular"
+					color={"#125ee0"}
+					onPress={calculate}
+					disabled={calculateButtonDisabled}
+				/>
+			</View>
+
 			<Text>Resultado</Text>
 			<View>
 				<Text>
