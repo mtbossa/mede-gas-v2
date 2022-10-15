@@ -72,44 +72,23 @@ function AppCalculator() {
 	}
 	return (
 		<View style={styles.mainContainer}>
-			<AppText>
-				<Text style={{ fontWeight: "bold", fontSize: 26 }}>Leituras</Text>
-			</AppText>
+			<View style={{ marginVertical: 20 }}>
+				<AppText>
+					<Text style={{ fontWeight: "bold", fontSize: 30 }}>Valores</Text>
+				</AppText>
+			</View>
 
 			<View
 				style={{
 					flexDirection: "row",
 					width: "100%",
-					alignContent: "center",
 					alignItems: "center",
-					backgroundColor: "red",
+					justifyContent: "space-between",
 				}}
 			>
-				<View>
+				<View style={{ flex: 2, alignItems: "center" }}>
 					<AppText>
-						<Text style={{ fontSize: 15 }}>Última leitura</Text>
-					</AppText>
-					<ReadingInput
-						style={[styles.input, { marginTop: 7 }]}
-						value={calculatorFormValues.lowerReading}
-						onChangeText={value =>
-							setCalculatorFormValues(oldValues => ({
-								...oldValues,
-								lowerReading: value,
-							}))
-						}
-					/>
-				</View>
-				<AppText>
-					<Text
-						style={{ fontSize: 40, fontWeight: "bold", marginHorizontal: 20 }}
-					>
-						-
-					</Text>
-				</AppText>
-				<View>
-					<AppText>
-						<Text style={{ fontSize: 15 }}>Leitura anterior</Text>
+						<Text style={{ fontSize: 20 }}>Valor atual</Text>
 					</AppText>
 					<ReadingInput
 						style={[styles.input, , { marginTop: 7 }]}
@@ -118,6 +97,28 @@ function AppCalculator() {
 							setCalculatorFormValues(oldValues => ({
 								...oldValues,
 								biggerReading: value,
+							}))
+						}
+					/>
+				</View>
+
+				<View style={{ marginHorizontal: 20 }}>
+					<AppText>
+						<Text style={{ fontSize: 40, fontWeight: "bold" }}>-</Text>
+					</AppText>
+				</View>
+
+				<View style={{ flex: 2, alignItems: "center" }}>
+					<AppText>
+						<Text style={{ fontSize: 20 }}>Valor anterior</Text>
+					</AppText>
+					<ReadingInput
+						style={[styles.input, { marginTop: 7 }]}
+						value={calculatorFormValues.lowerReading}
+						onChangeText={value =>
+							setCalculatorFormValues(oldValues => ({
+								...oldValues,
+								lowerReading: value,
 							}))
 						}
 					/>
