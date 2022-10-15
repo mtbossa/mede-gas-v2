@@ -73,32 +73,57 @@ function AppCalculator() {
 	return (
 		<View style={styles.mainContainer}>
 			<AppText>
-				<Text style={{ fontWeight: "bold", fontSize: 23, color: "#FFF" }}>
-					Leituras
-				</Text>
+				<Text style={{ fontWeight: "bold", fontSize: 26 }}>Leituras</Text>
 			</AppText>
-			<Text>1.</Text>
-			<ReadingInput
-				style={styles.input}
-				value={calculatorFormValues.lowerReading}
-				onChangeText={value =>
-					setCalculatorFormValues(oldValues => ({
-						...oldValues,
-						lowerReading: value,
-					}))
-				}
-			/>
-			<Text>2.</Text>
-			<ReadingInput
-				style={styles.input}
-				value={calculatorFormValues.biggerReading}
-				onChangeText={value =>
-					setCalculatorFormValues(oldValues => ({
-						...oldValues,
-						biggerReading: value,
-					}))
-				}
-			/>
+
+			<View
+				style={{
+					flexDirection: "row",
+					width: "100%",
+					alignContent: "center",
+					alignItems: "center",
+					backgroundColor: "red",
+				}}
+			>
+				<View>
+					<AppText>
+						<Text style={{ fontSize: 15 }}>Última leitura</Text>
+					</AppText>
+					<ReadingInput
+						style={[styles.input, { marginTop: 7 }]}
+						value={calculatorFormValues.lowerReading}
+						onChangeText={value =>
+							setCalculatorFormValues(oldValues => ({
+								...oldValues,
+								lowerReading: value,
+							}))
+						}
+					/>
+				</View>
+				<AppText>
+					<Text
+						style={{ fontSize: 40, fontWeight: "bold", marginHorizontal: 20 }}
+					>
+						-
+					</Text>
+				</AppText>
+				<View>
+					<AppText>
+						<Text style={{ fontSize: 15 }}>Leitura anterior</Text>
+					</AppText>
+					<ReadingInput
+						style={[styles.input, , { marginTop: 7 }]}
+						value={calculatorFormValues.biggerReading}
+						onChangeText={value =>
+							setCalculatorFormValues(oldValues => ({
+								...oldValues,
+								biggerReading: value,
+							}))
+						}
+					/>
+				</View>
+			</View>
+
 			<Text>Preço do gás (kg/gás)</Text>
 			<MaskInput
 				style={styles.input}
@@ -151,6 +176,7 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		width: "100%",
+		fontSize: 20,
 	},
 });
 
