@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import AppText from "../../../Shared/AppText";
+import AppTextInputLabel from "../../../Shared/AppTextInputLabel";
 import ReadingInput from "../../ReadingInput";
 
 interface AppCalculatorReadingInputsProps {
@@ -34,14 +35,12 @@ function AppCalculatorReadingInputs({
 				}}
 			>
 				<View style={{ flex: 2, alignItems: "center" }}>
-					<AppText>
-						<Text style={{ fontSize: 20 }}>Valor atual</Text>
-					</AppText>
+					<AppTextInputLabel>Valor atual</AppTextInputLabel>
 				</View>
 				<View style={{ flex: 1 }}></View>
 				<View style={{ flex: 2, alignItems: "center" }}>
 					<AppText>
-						<Text style={{ fontSize: 20 }}>Valor anterior</Text>
+						<AppTextInputLabel>Valor atual</AppTextInputLabel>
 					</AppText>
 				</View>
 			</View>

@@ -17,3 +17,5 @@ const styles = StyleSheet.create({
 });
 
 export default AppTextInput;
+
+export { styles as appInputStyles };

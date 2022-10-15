@@ -6,6 +6,8 @@ import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import { removeNonNumericAndNonCommaFromString } from "../../../services/ReadingInputValidator";
 import AppText from "../../Shared/AppText";
 import AppTextInput from "../../Shared/AppTextInput";
+import { appInputStyles } from "../../Shared/AppTextInput/AppTextInput";
+import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import ReadingInput from "../ReadingInput";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 
@@ -97,9 +99,9 @@ function AppCalculator() {
 				}
 			/>
 
-			<Text>Preço do gás (kg/gás)</Text>
+			<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
 			<MaskInput
-				style={styles.input}
+				style={[styles.input, appInputStyles.input]}
 				keyboardType="decimal-pad"
 				mask={Masks.BRL_CURRENCY}
 				value={calculatorFormValues.gasPriceByKg}
@@ -110,7 +112,7 @@ function AppCalculator() {
 					}))
 				}
 			/>
-			<Text>Coeficiente de conversão</Text>
+			<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
 			<AppTextInput
 				style={styles.input}
 				keyboardType="decimal-pad"
