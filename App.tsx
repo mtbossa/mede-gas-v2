@@ -105,7 +105,6 @@ export default function App() {
 				<Text>Preço do gás (kg/gás)</Text>
 				<MaskInput
 					keyboardType="decimal-pad"
-					style={styles.input}
 					mask={Masks.BRL_CURRENCY}
 					value={calculatorFormValues.gasPriceByKg}
 					onChangeText={value =>
@@ -148,11 +147,5 @@ export default function App() {
 const styles = StyleSheet.create({
 	defaultBackgroundColor: {
 		backgroundColor: "#B7AD99",
-	},
-	input: {
-		height: 40,
-		margin: 12,
-		borderWidth: 1,
-		padding: 10,
 	},
 });
