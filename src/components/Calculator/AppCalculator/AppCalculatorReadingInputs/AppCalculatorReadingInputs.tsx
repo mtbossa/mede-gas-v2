@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 import AppText from "../../../Shared/AppText";
 import AppTextInputLabel from "../../../Shared/AppTextInputLabel";
 import ReadingInput from "../../ReadingInput";
 
 interface AppCalculatorReadingInputsProps {
+	style?: StyleProp<ViewStyle>;
 	biggerReading: string;
 	lowerReading: string;
 	onChangeValue: (
@@ -14,18 +15,22 @@ interface AppCalculatorReadingInputsProps {
 }
 
 function AppCalculatorReadingInputs({
+	style,
 	biggerReading,
 	lowerReading,
 	onChangeValue,
 }: AppCalculatorReadingInputsProps) {
 	return (
 		<View
-			style={{
-				flexDirection: "column",
-				width: "100%",
-				alignItems: "center",
-				justifyContent: "space-between",
-			}}
+			style={[
+				{
+					flexDirection: "column",
+					width: "100%",
+					alignItems: "center",
+					justifyContent: "space-between",
+				},
+				style,
+			]}
 		>
 			<View
 				style={{
@@ -39,9 +44,7 @@ function AppCalculatorReadingInputs({
 				</View>
 				<View style={{ flex: 1 }}></View>
 				<View style={{ flex: 2, alignItems: "center" }}>
-					<AppText>
-						<AppTextInputLabel>Valor anterior</AppTextInputLabel>
-					</AppText>
+					<AppTextInputLabel>Valor anterior</AppTextInputLabel>
 				</View>
 			</View>
 
@@ -54,7 +57,7 @@ function AppCalculatorReadingInputs({
 			>
 				<View style={{ flex: 2 }}>
 					<ReadingInput
-						style={[styles.input, , { marginTop: 7 }]}
+						style={[styles.input]}
 						value={biggerReading}
 						onChangeText={value => onChangeValue("biggerReading", value)}
 					/>
@@ -68,7 +71,7 @@ function AppCalculatorReadingInputs({
 
 				<View style={{ flex: 2 }}>
 					<ReadingInput
-						style={[styles.input, { marginTop: 7 }]}
+						style={[styles.input]}
 						value={lowerReading}
 						onChangeText={value => onChangeValue("lowerReading", value)}
 					/>

@@ -89,6 +89,7 @@ function AppCalculator() {
 			</View>
 
 			<AppCalculatorReadingInputs
+				style={{ marginVertical: 10 }}
 				biggerReading={calculatorFormValues.biggerReading}
 				lowerReading={calculatorFormValues.lowerReading}
 				onChangeValue={(field, value) =>
@@ -99,31 +100,38 @@ function AppCalculator() {
 				}
 			/>
 
-			<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
-			<MaskInput
-				style={[styles.input, appInputStyles.input]}
-				keyboardType="decimal-pad"
-				mask={Masks.BRL_CURRENCY}
-				value={calculatorFormValues.gasPriceByKg}
-				onChangeText={value =>
-					setCalculatorFormValues(oldValues => ({
-						...oldValues,
-						gasPriceByKg: value,
-					}))
-				}
-			/>
-			<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
-			<AppTextInput
-				style={styles.input}
-				keyboardType="decimal-pad"
-				value={calculatorFormValues.conversionCoefficient}
-				onChangeText={value =>
-					setCalculatorFormValues(oldValues => ({
-						...oldValues,
-						conversionCoefficient: removeNonNumericAndNonCommaFromString(value),
-					}))
-				}
-			/>
+			<View style={{ width: "100%", marginVertical: 10 }}>
+				<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
+				<MaskInput
+					style={[styles.input, appInputStyles.input]}
+					keyboardType="decimal-pad"
+					mask={Masks.BRL_CURRENCY}
+					value={calculatorFormValues.gasPriceByKg}
+					onChangeText={value =>
+						setCalculatorFormValues(oldValues => ({
+							...oldValues,
+							gasPriceByKg: value,
+						}))
+					}
+				/>
+			</View>
+
+			<View style={{ width: "100%", marginVertical: 10 }}>
+				<AppTextInputLabel>Coeficiente de conversão</AppTextInputLabel>
+				<AppTextInput
+					style={styles.input}
+					keyboardType="decimal-pad"
+					value={calculatorFormValues.conversionCoefficient}
+					onChangeText={value =>
+						setCalculatorFormValues(oldValues => ({
+							...oldValues,
+							conversionCoefficient:
+								removeNonNumericAndNonCommaFromString(value),
+						}))
+					}
+				/>
+			</View>
+
 			<Button
 				title="Calcular"
 				onPress={calculate}

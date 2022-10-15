@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TextProps } from "react-native";
+import { Text, TextProps, View } from "react-native";
 import AppText from "../AppText/AppText";
 
 function AppTextInputLabel({
@@ -8,11 +8,13 @@ function AppTextInputLabel({
 	...textProps
 }: { children: React.ReactNode } & TextProps) {
 	return (
-		<AppText>
-			<Text style={[{ fontSize: 20 }, style]} {...textProps}>
-				{children}
-			</Text>
-		</AppText>
+		<View style={{ marginVertical: 10 }}>
+			<AppText>
+				<Text style={[{ fontSize: 20 }, style]} {...textProps}>
+					{children}
+				</Text>
+			</AppText>
+		</View>
 	);
 }
 
