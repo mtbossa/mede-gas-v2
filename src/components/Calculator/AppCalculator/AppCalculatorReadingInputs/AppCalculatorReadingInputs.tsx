@@ -40,7 +40,7 @@ function AppCalculatorReadingInputs({
 				<View style={{ flex: 1 }}></View>
 				<View style={{ flex: 2, alignItems: "center" }}>
 					<AppText>
-						<AppTextInputLabel>Valor atual</AppTextInputLabel>
+						<AppTextInputLabel>Valor anterior</AppTextInputLabel>
 					</AppText>
 				</View>
 			</View>
