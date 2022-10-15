@@ -102,14 +102,15 @@ export default function App() {
 			style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
 		>
 			<StatusBar />
-			<View>
+			<View style={styles.mainContainer}>
 				<AppText>
-					<Text style={{ fontWeight: "bold", fontSize: 20, }}>
-						Digite ou selecione leituras
+					<Text style={{ fontWeight: "bold", fontSize: 23, color: "#FFF" }}>
+						Leituras
 					</Text>
 				</AppText>
 				<Text>1.</Text>
 				<ReadingInput
+					style={styles.input}
 					value={calculatorFormValues.lowerReading}
 					onChangeText={value =>
 						setCalculatorFormValues(oldValues => ({
@@ -120,6 +121,7 @@ export default function App() {
 				/>
 				<Text>2.</Text>
 				<ReadingInput
+					style={styles.input}
 					value={calculatorFormValues.biggerReading}
 					onChangeText={value =>
 						setCalculatorFormValues(oldValues => ({
@@ -130,6 +132,7 @@ export default function App() {
 				/>
 				<Text>Preço do gás (kg/gás)</Text>
 				<MaskInput
+					style={styles.input}
 					keyboardType="decimal-pad"
 					mask={Masks.BRL_CURRENCY}
 					value={calculatorFormValues.gasPriceByKg}
@@ -142,6 +145,7 @@ export default function App() {
 				/>
 				<Text>Coeficiente de conversão</Text>
 				<AppTextInput
+					style={styles.input}
 					keyboardType="decimal-pad"
 					value={calculatorFormValues.conversionCoefficient}
 					onChangeText={value =>
@@ -172,6 +176,16 @@ export default function App() {
 
 const styles = StyleSheet.create({
 	defaultBackgroundColor: {
-		backgroundColor: "#B7AD99",
+		backgroundColor: "#191819",
+	},
+	mainContainer: {
+		justifyContent: "center",
+		alignItems: "center",
+		width: "100%",
+		paddingVertical: 10,
+		paddingHorizontal: 20,
+	},
+	input: {
+		width: "100%",
 	},
 });
