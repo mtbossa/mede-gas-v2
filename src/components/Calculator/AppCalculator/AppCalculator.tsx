@@ -80,48 +80,70 @@ function AppCalculator() {
 
 			<View
 				style={{
-					flexDirection: "row",
+					flexDirection: "column",
 					width: "100%",
 					alignItems: "center",
 					justifyContent: "space-between",
 				}}
 			>
-				<View style={{ flex: 2, alignItems: "center" }}>
-					<AppText>
-						<Text style={{ fontSize: 20 }}>Valor atual</Text>
-					</AppText>
-					<ReadingInput
-						style={[styles.input, , { marginTop: 7 }]}
-						value={calculatorFormValues.biggerReading}
-						onChangeText={value =>
-							setCalculatorFormValues(oldValues => ({
-								...oldValues,
-								biggerReading: value,
-							}))
-						}
-					/>
+				<View
+					style={{
+						width: "100%",
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+					}}
+				>
+					<View style={{ flex: 2, alignItems: "center" }}>
+						<AppText>
+							<Text style={{ fontSize: 20 }}>Valor atual</Text>
+						</AppText>
+					</View>
+					<View style={{ flex: 1 }}></View>
+					<View style={{ flex: 2, alignItems: "center" }}>
+						<AppText>
+							<Text style={{ fontSize: 20 }}>Valor anterior</Text>
+						</AppText>
+					</View>
 				</View>
 
-				<View style={{ marginHorizontal: 20 }}>
-					<AppText>
-						<Text style={{ fontSize: 40, fontWeight: "bold" }}>-</Text>
-					</AppText>
-				</View>
+				<View
+					style={{
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<View style={{ flex: 2 }}>
+						<ReadingInput
+							style={[styles.input, , { marginTop: 7 }]}
+							value={calculatorFormValues.biggerReading}
+							onChangeText={value =>
+								setCalculatorFormValues(oldValues => ({
+									...oldValues,
+									biggerReading: value,
+								}))
+							}
+						/>
+					</View>
 
-				<View style={{ flex: 2, alignItems: "center" }}>
-					<AppText>
-						<Text style={{ fontSize: 20 }}>Valor anterior</Text>
-					</AppText>
-					<ReadingInput
-						style={[styles.input, { marginTop: 7 }]}
-						value={calculatorFormValues.lowerReading}
-						onChangeText={value =>
-							setCalculatorFormValues(oldValues => ({
-								...oldValues,
-								lowerReading: value,
-							}))
-						}
-					/>
+					<View style={{ marginHorizontal: 20 }}>
+						<AppText>
+							<Text style={{ fontSize: 40, fontWeight: "bold" }}>-</Text>
+						</AppText>
+					</View>
+
+					<View style={{ flex: 2 }}>
+						<ReadingInput
+							style={[styles.input, { marginTop: 7 }]}
+							value={calculatorFormValues.lowerReading}
+							onChangeText={value =>
+								setCalculatorFormValues(oldValues => ({
+									...oldValues,
+									lowerReading: value,
+								}))
+							}
+						/>
+					</View>
 				</View>
 			</View>
 
