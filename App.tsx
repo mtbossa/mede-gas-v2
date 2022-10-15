@@ -20,6 +20,7 @@ import "./src/numeral";
 import { calculateGasSpentValues } from "./src/services/GasCalculator";
 import numeral from "numeral";
 import { removeNonNumericAndNonCommaFromString } from "./src/services/ReadingInputValidator";
+import AppTextInput from "./src/components/Shared/AppTextInput";
 
 interface Result {
 	diffInKg: string;
@@ -90,6 +91,7 @@ export default function App() {
 		>
 			<StatusBar />
 			<View>
+				<AppTextInput />
 				<Text>Digite ou selecione leituras</Text>
 				<Text>1.</Text>
 				<ReadingInput
@@ -125,9 +127,8 @@ export default function App() {
 					}
 				/>
 				<Text>Coeficiente de conversão</Text>
-				<TextInput
+				<AppTextInput
 					keyboardType="decimal-pad"
-					style={styles.input}
 					value={calculatorFormValues.conversionCoefficient}
 					onChangeText={value =>
 						setCalculatorFormValues(oldValues => ({
