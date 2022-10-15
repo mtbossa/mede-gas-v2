@@ -75,7 +75,14 @@ function AppCalculator() {
 		<View style={styles.mainContainer}>
 			<View style={{ marginVertical: 20 }}>
 				<AppText>
-					<Text style={{ fontWeight: "bold", fontSize: 30 }}>Valores</Text>
+					<Text
+						style={{
+							fontFamily: "RussoOne-Regular",
+							fontSize: 30,
+						}}
+					>
+						Calcular Gastos
+					</Text>
 				</AppText>
 			</View>
 
