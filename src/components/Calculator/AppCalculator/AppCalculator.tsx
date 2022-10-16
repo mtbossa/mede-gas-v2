@@ -5,6 +5,8 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import { removeNonNumericAndNonCommaFromString } from "../../../services/ReadingInputValidator";
+import AppSelect from "../../Shared/AppSelect";
+import AppSelectItem from "../../Shared/AppSelect/AppSelectItems";
 import AppText from "../../Shared/AppText";
 import AppTextInput from "../../Shared/AppTextInput";
 import { appInputStyles } from "../../Shared/AppTextInput/AppTextInput";
@@ -130,7 +132,7 @@ function AppCalculator() {
 
 			<View style={{ width: "100%", marginTop: 5 }}>
 				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
-				<Picker
+				<AppSelect
 					selectedValue={calculatorFormValues.conversionCoefficient}
 					onValueChange={(itemValue, itemIndex) =>
 						setCalculatorFormValues(oldValues => ({
@@ -141,9 +143,9 @@ function AppCalculator() {
 					}
 				>
 					{COEFFICIENT_VALUES.map(value => (
-						<Picker.Item label={value} value={value} />
+						<AppSelectItem label={value} value={value} />
 					))}
-				</Picker>
+				</AppSelect>
 				<Text>Utilizado na conversão m³ para kg (Recomendado: 2,5)</Text>
 			</View>
 
