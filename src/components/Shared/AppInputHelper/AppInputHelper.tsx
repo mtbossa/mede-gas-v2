@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TextProps } from "react-native";
+import { StyleSheet, Text, TextProps, View } from "react-native";
 import AppText from "../AppText";
 
 interface AppInputHelper {
@@ -12,15 +12,21 @@ function AppInputHelper({
 	...textProps
 }: TextProps & AppInputHelper) {
 	return (
-		<AppText>
-			<Text style={[styles.helperText, style]}>{text}</Text>
-		</AppText>
+		<View style={styles.helperTextView}>
+			<AppText>
+				<Text style={[styles.helperText, style]}>{text}</Text>
+			</AppText>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	helperText: {
 		fontSize: 12.5,
+	},
+	helperTextView: {
+		marginLeft: 15,
+		marginTop: 5,
 	},
 });
 

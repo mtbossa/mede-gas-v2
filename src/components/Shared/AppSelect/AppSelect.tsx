@@ -24,11 +24,7 @@ function AppSelect<T>({
 					{children}
 				</Picker>
 			</View>
-			{helperText && (
-				<View style={styles.helperText}>
-					<AppInputHelper text={helperText} />
-				</View>
-			)}
+			{helperText && <AppInputHelper text={helperText} />}
 		</View>
 	);
 }
@@ -44,10 +40,6 @@ const styles = StyleSheet.create({
 		borderRadius: 3,
 		elevation: 2,
 		backgroundColor: "#FFFFF3",
-		marginBottom: 6,
-	},
-	helperText: {
-		marginLeft: 15,
 	},
 });
 
