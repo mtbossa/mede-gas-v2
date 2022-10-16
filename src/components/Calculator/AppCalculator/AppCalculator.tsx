@@ -5,6 +5,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import { removeNonNumericAndNonCommaFromString } from "../../../services/ReadingInputValidator";
+import AppMaskInput from "../../Shared/AppMaskInput";
 import AppSelect from "../../Shared/AppSelect";
 import AppSelectItem from "../../Shared/AppSelect/AppSelectItems";
 import AppText from "../../Shared/AppText";
@@ -116,8 +117,8 @@ function AppCalculator() {
 
 			<View style={{ width: "100%", marginVertical: 5 }}>
 				<AppTextInputLabel>Preço (kg/gás)</AppTextInputLabel>
-				<MaskInput
-					style={[styles.input, appInputStyles.input]}
+				<AppMaskInput
+					style={styles.input}
 					keyboardType="decimal-pad"
 					mask={Masks.BRL_CURRENCY}
 					value={calculatorFormValues.gasPriceByKg}
