@@ -1,3 +1,4 @@
+import { Picker } from "@react-native-picker/picker";
 import numeral from "numeral";
 import React, { useState, useCallback, useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
@@ -23,6 +24,17 @@ interface CalculatorForm {
 	gasPriceByKg: string;
 	conversionCoefficient: string;
 }
+
+const COEFFICIENT_VALUES = [
+	"2,2",
+	"2,3",
+	"2,4",
+	"2,5",
+	"2,6",
+	"2,7",
+	"2,8",
+	"2,9",
+];
 
 function AppCalculator() {
 	const [calculatorFormValues, setCalculatorFormValues] =
@@ -118,18 +130,20 @@ function AppCalculator() {
 
 			<View style={{ width: "100%", marginTop: 5 }}>
 				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
-				<AppTextInput
-					style={styles.input}
-					keyboardType="decimal-pad"
-					value={calculatorFormValues.conversionCoefficient}
-					onChangeText={value =>
+				<Picker
+					selectedValue={calculatorFormValues.conversionCoefficient}
+					onValueChange={(itemValue, itemIndex) =>
 						setCalculatorFormValues(oldValues => ({
 							...oldValues,
 							conversionCoefficient:
-								removeNonNumericAndNonCommaFromString(value),
+								removeNonNumericAndNonCommaFromString(itemValue),
 						}))
 					}
-				/>
+				>
+					{COEFFICIENT_VALUES.map(value => (
+						<Picker.Item label={value} value={value} />
+					))}
+				</Picker>
 			</View>
 
 			<View style={{ width: "50%", marginVertical: 20 }}>
