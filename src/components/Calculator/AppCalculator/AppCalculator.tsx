@@ -144,6 +144,7 @@ function AppCalculator() {
 						<Picker.Item label={value} value={value} />
 					))}
 				</Picker>
+				<Text>Valor utilizado na conversão m³ para kg</Text>
 			</View>
 
 			<View style={{ width: "50%", marginVertical: 20 }}>
