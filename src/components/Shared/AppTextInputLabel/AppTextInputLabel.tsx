@@ -10,7 +10,7 @@ function AppTextInputLabel({
 	return (
 		<View style={{ marginVertical: 10 }}>
 			<AppText>
-				<Text style={[{ fontSize: 20 }, style]} {...textProps}>
+				<Text style={[{ fontSize: 20, fontWeight: "900" }, style]} {...textProps}>
 					{children}
 				</Text>
 			</AppText>
