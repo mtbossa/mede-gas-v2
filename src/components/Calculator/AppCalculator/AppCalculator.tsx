@@ -1,7 +1,7 @@
 import { Picker } from "@react-native-picker/picker";
 import numeral from "numeral";
 import React, { useState, useCallback, useEffect } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, Keyboard, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import { removeNonNumericAndNonCommaFromString } from "../../../services/ReadingInputValidator";
@@ -86,6 +86,7 @@ function AppCalculator() {
 		};
 
 		setResult(formattedResults);
+		Keyboard.dismiss();
 	}
 	return (
 		<View style={styles.mainContainer}>
