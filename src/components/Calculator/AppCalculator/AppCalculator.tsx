@@ -122,6 +122,7 @@ function AppCalculator() {
 					style={styles.input}
 					keyboardType="decimal-pad"
 					mask={Masks.BRL_CURRENCY}
+					maxLength={11}
 					value={calculatorFormValues.gasPriceByKg}
 					onChangeText={value =>
 						setCalculatorFormValues(oldValues => ({
