@@ -1,6 +1,6 @@
 import numeral from "numeral";
 import React, { useState, useCallback, useEffect } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import { removeNonNumericAndNonCommaFromString } from "../../../services/ReadingInputValidator";
@@ -71,11 +71,10 @@ function AppCalculator() {
 		};
 
 		setResult(formattedResults);
-		setCalculateButtonDisabled(true);
 	}
 	return (
 		<View style={styles.mainContainer}>
-			<View style={{ marginVertical: 20 }}>
+			<View style={{ marginVertical: 10 }}>
 				<AppText>
 					<Text
 						style={{
@@ -132,31 +131,32 @@ function AppCalculator() {
 				/>
 			</View>
 
-			<View style={{ width: "50%", marginVertical: 40 }}>
-				<TouchableOpacity
+			<View style={{ width: "50%", marginVertical: 20 }}>
+				<Button
+					title="Calcular"
+					color={"#125ee0"}
 					onPress={calculate}
-					style={[
-						styles.appButtonContainer,
-						calculateButtonDisabled
-							? styles.buttonDisabledColor
-							: styles.buttonColor,
-					]}
 					disabled={calculateButtonDisabled}
-				>
-					<Text
-						style={[
-							styles.appButtonText,
-							calculateButtonDisabled
-								? styles.buttonDisabledTextColor
-								: styles.buttonTextColor,
-						]}
-					>
-						Calcular
-					</Text>
-				</TouchableOpacity>
+				/>
 			</View>
 
-			<Text>Resultado</Text>
+			<View style={{ flexDirection: "row", alignItems: "center" }}>
+				<View style={{ flex: 1, height: 1, backgroundColor: "#454441" }} />
+				<View style={{marginHorizontal: 12}}>
+					<AppText>
+						<Text
+							style={{
+								fontFamily: "RussoOne-Regular",
+								fontSize: 30,
+							}}
+						>
+							Resultado
+						</Text>
+					</AppText>
+				</View>
+				<View style={{ flex: 1, height: 1, backgroundColor: "#454441" }} />
+			</View>
+
 			<View>
 				<Text>
 					Diferença: {result?.diffInCubicMeter ?? 0} m3 |{" "}
@@ -179,31 +179,6 @@ const styles = StyleSheet.create({
 	input: {
 		width: "100%",
 		fontSize: 20,
-	},
-	buttonDisabledColor: {
-		backgroundColor: "#344054",
-	},
-	buttonDisabledTextColor: {
-		color: "#485a7a",
-	},
-	buttonColor: {
-		backgroundColor: "#125EE0",
-	},
-	buttonTextColor: {
-		color: "#FFF",
-	},
-	appButtonContainer: {
-		elevation: 3,
-		borderRadius: 5,
-		paddingVertical: 10,
-		paddingHorizontal: 12,
-	},
-	appButtonText: {
-		fontSize: 18,
-		fontFamily: "Lato-Regular",
-		fontWeight: "bold",
-		alignSelf: "center",
-		textTransform: "uppercase",
 	},
 });
 
