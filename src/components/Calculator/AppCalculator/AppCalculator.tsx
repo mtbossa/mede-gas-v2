@@ -44,7 +44,7 @@ function AppCalculator() {
 			lowerReading: "",
 			biggerReading: "",
 			gasPriceByKg: "",
-			conversionCoefficient: "",
+			conversionCoefficient: "2,5",
 		});
 	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
 	const [result, setResult] = useState<Result>({
@@ -142,8 +142,8 @@ function AppCalculator() {
 						}))
 					}
 				>
-					{COEFFICIENT_VALUES.map(value => (
-						<AppSelectItem label={value} value={value} />
+					{COEFFICIENT_VALUES.map((value, index) => (
+						<AppSelectItem label={value} value={value} key={index} />
 					))}
 				</AppSelect>
 				<Text>Utilizado na conversão m³ para kg (Recomendado: 2,5)</Text>
