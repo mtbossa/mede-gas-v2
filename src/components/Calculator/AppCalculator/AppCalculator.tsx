@@ -88,7 +88,7 @@ function AppCalculator() {
 			</View>
 
 			<AppCalculatorReadingInputs
-				style={{ marginBottom: 10 }}
+				style={{ marginBottom: 5 }}
 				biggerReading={calculatorFormValues.biggerReading}
 				lowerReading={calculatorFormValues.lowerReading}
 				onChangeValue={(field, value) =>
@@ -99,7 +99,7 @@ function AppCalculator() {
 				}
 			/>
 
-			<View style={{ width: "100%", marginVertical: 10 }}>
+			<View style={{ width: "100%", marginVertical: 5 }}>
 				<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
 				<MaskInput
 					style={[styles.input, appInputStyles.input]}
@@ -115,7 +115,7 @@ function AppCalculator() {
 				/>
 			</View>
 
-			<View style={{ width: "100%", marginTop: 10 }}>
+			<View style={{ width: "100%", marginTop: 5 }}>
 				<AppTextInputLabel>Coeficiente de conversão</AppTextInputLabel>
 				<AppTextInput
 					style={styles.input}
@@ -142,7 +142,7 @@ function AppCalculator() {
 
 			<View style={{ flexDirection: "row", alignItems: "center" }}>
 				<View style={{ flex: 1, height: 1, backgroundColor: "#454441" }} />
-				<View style={{marginHorizontal: 12}}>
+				<View style={{ marginHorizontal: 12 }}>
 					<AppText>
 						<Text
 							style={{
