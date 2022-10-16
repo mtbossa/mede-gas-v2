@@ -28,6 +28,9 @@ function AppCalculatorReadingInputs({
 					width: "100%",
 					alignItems: "center",
 					justifyContent: "space-between",
+					backgroundColor: "#bfbcb2",
+					borderRadius: 3,
+					padding: 20,
 				},
 				style,
 			]}
