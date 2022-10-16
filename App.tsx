@@ -18,7 +18,7 @@ import AppCalculator from "./src/components/Calculator/AppCalculator";
 
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
-	"RussoOne-Regular": require("./assets/fonts/RussoOne-Regular.ttf"),
+	Heebo: require("./assets/fonts/Heebo.ttf"),
 };
 
 SplashScreen.preventAutoHideAsync();

@@ -78,8 +78,9 @@ function AppCalculator() {
 				<AppText>
 					<Text
 						style={{
-							fontFamily: "RussoOne-Regular",
+							fontFamily: "Heebo",
 							fontSize: 30,
+							fontWeight: "bold",
 						}}
 					>
 						Calcular Gastos
@@ -141,20 +142,21 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ flexDirection: "row", alignItems: "center" }}>
-				<View style={{ flex: 1, height: 1, backgroundColor: "#454441" }} />
+				<View style={{ flex: 1, height: 1, backgroundColor: "#06317a" }} />
 				<View style={{ marginHorizontal: 12 }}>
 					<AppText>
 						<Text
 							style={{
-								fontFamily: "RussoOne-Regular",
+								fontFamily: "Heebo",
 								fontSize: 30,
+								fontWeight: "bold",
 							}}
 						>
 							Resultado
 						</Text>
 					</AppText>
 				</View>
-				<View style={{ flex: 1, height: 1, backgroundColor: "#454441" }} />
+				<View style={{ flex: 1, height: 1, backgroundColor: "#06317a" }} />
 			</View>
 
 			<View style={{ flexDirection: "row", marginTop: 15 }}>
@@ -168,13 +170,15 @@ function AppCalculator() {
 				</View>
 				<View>
 					<AppText>
-						<Text style={{ fontSize: 20 }}>
+						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
 							{result?.diffInCubicMeter ?? 0} m3 | {result?.diffInKg ?? 0}{" "}
 							kg/gás
 						</Text>
 					</AppText>
 					<AppText>
-						<Text style={{ fontSize: 20 }}>{result?.moneySpent}</Text>
+						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+							{result?.moneySpent}
+						</Text>
 					</AppText>
 				</View>
 			</View>
