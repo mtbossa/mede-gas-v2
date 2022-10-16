@@ -117,7 +117,7 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ width: "100%", marginTop: 5 }}>
-				<AppTextInputLabel>Coeficiente de conversão</AppTextInputLabel>
+				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
 				<AppTextInput
 					style={styles.input}
 					keyboardType="decimal-pad"

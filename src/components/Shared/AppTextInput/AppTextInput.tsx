@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
 	focused: {
 		borderColor: "#125ee0",
 		borderWidth: 2,
-		outlineColor: "#523009",
 		outlineStyle: "solid",
 		outlineWidth: 4,
 	},
