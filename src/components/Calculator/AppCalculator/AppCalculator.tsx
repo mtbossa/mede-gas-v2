@@ -142,12 +142,12 @@ function AppCalculator() {
 								removeNonNumericAndNonCommaFromString(itemValue),
 						}))
 					}
+					helperText="Utilizado na conversão m³ para kg (Recomendado: 2,5)"
 				>
 					{COEFFICIENT_VALUES.map((value, index) => (
 						<AppSelectItem label={value} value={value} key={index} />
 					))}
 				</AppSelect>
-				<Text>Utilizado na conversão m³ para kg (Recomendado: 2,5)</Text>
 			</View>
 
 			<View style={{ width: "50%", marginVertical: 20 }}>
