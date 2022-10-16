@@ -113,7 +113,7 @@ function AppCalculator() {
 			/>
 
 			<View style={{ width: "100%", marginVertical: 5 }}>
-				<AppTextInputLabel>Preço do gás (kg/gás)</AppTextInputLabel>
+				<AppTextInputLabel>Preço (kg/gás)</AppTextInputLabel>
 				<MaskInput
 					style={[styles.input, appInputStyles.input]}
 					keyboardType="decimal-pad"
