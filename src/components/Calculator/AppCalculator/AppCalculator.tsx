@@ -161,20 +161,24 @@ function AppCalculator() {
 
 			<View style={{ flexDirection: "row", marginTop: 15 }}>
 				<View style={{ marginRight: 10 }}>
-					<AppText>
-						<Text style={{ fontSize: 20 }}>Diferença:</Text>
-					</AppText>
+					<View style={{ marginBottom: 7 }}>
+						<AppText>
+							<Text style={{ fontSize: 20 }}>Diferença:</Text>
+						</AppText>
+					</View>
 					<AppText>
 						<Text style={{ fontSize: 20 }}>Total gasto: </Text>
 					</AppText>
 				</View>
 				<View>
-					<AppText>
-						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-							{result?.diffInCubicMeter ?? 0} m3 | {result?.diffInKg ?? 0}{" "}
-							kg/gás
-						</Text>
-					</AppText>
+					<View style={{ marginBottom: 7 }}>
+						<AppText>
+							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+								{result?.diffInCubicMeter ?? 0} m3 | {result?.diffInKg ?? 0}{" "}
+								kg/gás
+							</Text>
+						</AppText>
+					</View>
 					<AppText>
 						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
 							{result?.moneySpent}
