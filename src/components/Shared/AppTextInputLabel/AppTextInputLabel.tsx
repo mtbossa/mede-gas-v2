@@ -8,7 +8,7 @@ function AppTextInputLabel({
 	...textProps
 }: { children: React.ReactNode } & TextProps) {
 	return (
-		<View style={{ marginBottom: 5 }}>
+		<View style={{ marginBottom: 10 }}>
 			<AppText>
 				<Text
 					style={[{ fontSize: 17, fontWeight: "900" }, style]}
