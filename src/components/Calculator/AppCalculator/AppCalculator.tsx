@@ -124,7 +124,7 @@ function AppCalculator() {
 					style={styles.input}
 					keyboardType="decimal-pad"
 					mask={Masks.BRL_CURRENCY}
-					placeholder={'R$ 0,00'}
+					placeholder={"R$ 0,00"}
 					maxLength={11}
 					value={calculatorFormValues.gasPriceByKg}
 					onChangeText={value =>
@@ -206,7 +206,7 @@ function AppCalculator() {
 					<View style={{ marginBottom: 16 }}>
 						<AppText>
 							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInCubicMeter ?? 0} m3
+								{result?.diffInCubicMeter ?? 0} m³
 							</Text>
 						</AppText>
 						<View
