@@ -29,7 +29,7 @@ function AppCalculatorReadingInputs({
 					elevation: 10,
 					alignItems: "center",
 					justifyContent: "center",
-					padding: 10,
+					padding: 20,
 				},
 				style,
 			]}
@@ -53,7 +53,7 @@ function AppCalculatorReadingInputs({
 						width: "100%",
 						alignItems: "center",
 						justifyContent: "space-between",
-						marginTop: 10,
+						marginTop: 15,
 					},
 				]}
 			>
