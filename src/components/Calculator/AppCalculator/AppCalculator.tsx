@@ -1,21 +1,14 @@
-import { Picker } from "@react-native-picker/picker";
 import numeral from "numeral";
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Keyboard, StyleSheet, Text, View } from "react-native";
-import MaskInput, { Masks } from "react-native-mask-input";
+import { Masks } from "react-native-mask-input";
+
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
-import { removeNonNumericAndNonCommaFromString } from "../../../services/ReadingInputValidator";
 import AppMaskInput from "../../Shared/AppMaskInput";
-import AppSelect from "../../Shared/AppSelect";
-import AppSelectItem from "../../Shared/AppSelect/AppSelectItems";
 import AppText from "../../Shared/AppText";
-import AppTextInput from "../../Shared/AppTextInput";
-import { appInputStyles } from "../../Shared/AppTextInput/AppTextInput";
 import AppTextInputLabel from "../../Shared/AppTextInputLabel";
-import ReadingInput from "../ReadingInput";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
-import Results from "../Result";
 import Result from "../Result";
 
 export interface Result {
