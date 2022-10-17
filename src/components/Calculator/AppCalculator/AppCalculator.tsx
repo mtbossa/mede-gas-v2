@@ -179,9 +179,18 @@ function AppCalculator() {
 				<View style={{ flex: 1, height: 1, backgroundColor: "#06317a" }} />
 			</View>
 
-			<View style={{ flexDirection: "row", marginTop: 15 }}>
+			<View
+				style={{
+					flexDirection: "row",
+					marginTop: 15,
+					backgroundColor: "#06317a",
+					borderRadius: 10,
+					padding: 20,
+					elevation: 10,
+				}}
+			>
 				<View style={{ marginRight: 10 }}>
-					<View style={{ marginBottom: 7 }}>
+					<View style={{ marginBottom: 30 }}>
 						<AppText>
 							<Text style={{ fontSize: 20 }}>Diferença:</Text>
 						</AppText>
@@ -194,7 +203,8 @@ function AppCalculator() {
 					<View style={{ marginBottom: 7 }}>
 						<AppText>
 							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInCubicMeter ?? 0} m3 | {result?.diffInKg ?? 0}{" "}
+								{result?.diffInCubicMeter ?? 0} m3{"\n"}
+							 {result?.diffInKg ?? 0}{" "}
 								kg/gás
 							</Text>
 						</AppText>
