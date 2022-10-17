@@ -22,14 +22,17 @@ function AppCalculatorReadingInputs({
 }: AppCalculatorReadingInputsProps) {
 	return (
 		<View
-			style={{
-				backgroundColor: "#232630",
-				borderRadius: 10,
-				padding: 20,
-				elevation: 10,
-				alignItems: "center",
-				justifyContent: "center",
-			}}
+			style={[
+				{
+					backgroundColor: "#232630",
+					borderRadius: 10,
+					elevation: 10,
+					alignItems: "center",
+					justifyContent: "center",
+					padding: 10,
+				},
+				style,
+			]}
 		>
 			<AppText>
 				<Text
@@ -50,8 +53,8 @@ function AppCalculatorReadingInputs({
 						width: "100%",
 						alignItems: "center",
 						justifyContent: "space-between",
+						marginTop: 10,
 					},
-					style,
 				]}
 			>
 				<View

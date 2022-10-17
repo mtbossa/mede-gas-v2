@@ -96,7 +96,7 @@ function AppCalculator() {
 	return (
 		<View style={styles.mainContainer}>
 			<AppCalculatorReadingInputs
-				style={{ marginVertical: 10 }}
+				style={{ marginBottom: 10 }}
 				biggerReading={calculatorFormValues.biggerReading}
 				lowerReading={calculatorFormValues.lowerReading}
 				onChangeValue={(field, value) =>
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		width: "100%",
 		paddingHorizontal: 20,
-		paddingVertical: 20,
+		paddingVertical: 10,
 	},
 	input: {
 		width: "100%",
