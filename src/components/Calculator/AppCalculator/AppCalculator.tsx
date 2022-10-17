@@ -14,6 +14,7 @@ import { appInputStyles } from "../../Shared/AppTextInput/AppTextInput";
 import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import ReadingInput from "../ReadingInput";
 import { FontAwesome5 } from "@expo/vector-icons";
+import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 
 interface Result {
@@ -48,6 +49,7 @@ function AppCalculator() {
 			gasPriceByKg: "",
 			conversionCoefficient: "2,5",
 		});
+	const [coefficientValue, setCoefficientValue] = useState("2,5");
 	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
 	const [result, setResult] = useState<Result>({
 		diffInKg: "0",
@@ -138,21 +140,29 @@ function AppCalculator() {
 
 			<View style={{ width: "100%", marginTop: 5 }}>
 				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
-				<AppSelect
-					selectedValue={calculatorFormValues.conversionCoefficient}
-					onValueChange={(itemValue, itemIndex) =>
-						setCalculatorFormValues(oldValues => ({
-							...oldValues,
-							conversionCoefficient:
-								removeNonNumericAndNonCommaFromString(itemValue),
-						}))
-					}
-					helperText="Utilizado na conversão m³ para kg (Recomendado: 2,5)"
-				>
-					{COEFFICIENT_VALUES.map((value, index) => (
-						<AppSelectItem label={value} value={value} key={index} />
-					))}
-				</AppSelect>
+				<View style={{ justifyContent: "center", alignItems: "center" }}>
+					<AppText>
+						<Text style={{ fontSize: 17, fontWeight: "bold" }}>
+							{coefficientValue}
+						</Text>
+					</AppText>
+					<Slider
+						style={{ width: "100%", marginTop: 6 }}
+						minimumValue={2.0}
+						maximumValue={3.0}
+						step={0.1}
+						value={2.5}
+						onValueChange={e => {
+							setCoefficientValue(String(e).replace(".", ","));
+							setCalculatorFormValues(oldValues => ({
+								...oldValues,
+								conversionCoefficient: String(e).replace(".", ","),
+							}));
+						}}
+						minimumTrackTintColor="#06317a"
+						maximumTrackTintColor="#FFFFFF"
+					/>
+				</View>
 			</View>
 
 			<View style={{ width: "50%", marginVertical: 20 }}>
