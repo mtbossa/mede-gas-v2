@@ -49,6 +49,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
 	defaultBackgroundColor: {
-		backgroundColor: "#191819",
+		backgroundColor: "#0b0c0d",
 	},
 });
