@@ -31,17 +31,6 @@ interface CalculatorForm {
 	conversionCoefficient: string;
 }
 
-const COEFFICIENT_VALUES = [
-	"2,2",
-	"2,3",
-	"2,4",
-	"2,5",
-	"2,6",
-	"2,7",
-	"2,8",
-	"2,9",
-];
-
 function AppCalculator() {
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>({
@@ -126,7 +115,12 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ width: "100%", marginTop: 10 }}>
-				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
+				<AppTextInputLabel
+					helperButton={true}
+					onHelperButtonPress={e => console.log(e)}
+				>
+					Coeficiente m³ / kg
+				</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
 					<AppText>
 						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
