@@ -94,22 +94,8 @@ function AppCalculator() {
 
 	return (
 		<View style={styles.mainContainer}>
-			<View style={{ marginBottom: 5 }}>
-				<AppText>
-					<Text
-						style={{
-							fontFamily: "Heebo",
-							fontSize: 30,
-							fontWeight: "bold",
-						}}
-					>
-						Calcular Gastos
-					</Text>
-				</AppText>
-			</View>
-
 			<AppCalculatorReadingInputs
-				style={{ marginBottom: 5 }}
+				style={{ marginVertical: 10 }}
 				biggerReading={calculatorFormValues.biggerReading}
 				lowerReading={calculatorFormValues.lowerReading}
 				onChangeValue={(field, value) =>
@@ -120,7 +106,7 @@ function AppCalculator() {
 				}
 			/>
 
-			<View style={{ width: "100%", marginVertical: 5 }}>
+			<View style={{ width: "100%", marginVertical: 10 }}>
 				<AppTextInputLabel>Preço (kg/gás)</AppTextInputLabel>
 				<AppMaskInput
 					style={styles.input}
@@ -138,7 +124,7 @@ function AppCalculator() {
 				/>
 			</View>
 
-			<View style={{ width: "100%", marginTop: 5 }}>
+			<View style={{ width: "100%", marginTop: 10 }}>
 				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
 					<AppText>
@@ -248,6 +234,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		width: "100%",
 		paddingHorizontal: 20,
+		paddingVertical: 20,
 	},
 	input: {
 		width: "100%",
