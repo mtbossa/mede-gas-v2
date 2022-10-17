@@ -6,7 +6,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 function Result({ result }: { result: CalculationResult }) {
 	return (
-		<View>
+		<View style={{ width: "100%" }}>
 			<AppText>
 				<Text
 					style={{
