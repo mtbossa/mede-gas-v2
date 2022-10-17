@@ -71,7 +71,7 @@ function AppCalculatorReadingInputs({
 					/>
 				</View>
 
-				<View style={{ marginHorizontal: 20 }}>
+				<View style={{ marginHorizontal: 13 }}>
 					<AppText>
 						<Text style={{ fontSize: 40, fontWeight: "bold", color: "#FFF" }}>
 							-
