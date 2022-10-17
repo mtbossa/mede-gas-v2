@@ -20,11 +20,11 @@ function AppTextInput({
 			<TextInput
 				onFocus={e => {
 					setIsFocused(true);
-					onFocus(e);
+					onFocus && onFocus(e);
 				}}
 				onBlur={e => {
 					setIsFocused(false);
-					onBlur(e);
+					onBlur && onBlur(e);
 				}}
 				style={[styles.input, isFocused && styles.focused, style]}
 				{...inputPropsTextInputProps}
