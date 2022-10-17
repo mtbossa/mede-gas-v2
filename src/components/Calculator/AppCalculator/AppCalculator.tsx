@@ -13,6 +13,7 @@ import AppTextInput from "../../Shared/AppTextInput";
 import { appInputStyles } from "../../Shared/AppTextInput/AppTextInput";
 import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import ReadingInput from "../ReadingInput";
+import { FontAwesome5 } from "@expo/vector-icons";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 
 interface Result {
@@ -88,7 +89,7 @@ function AppCalculator() {
 		setResult(formattedResults);
 		Keyboard.dismiss();
 	}
-	
+
 	return (
 		<View style={styles.mainContainer}>
 			<View style={{ marginBottom: 5 }}>
@@ -191,7 +192,7 @@ function AppCalculator() {
 				}}
 			>
 				<View style={{ marginRight: 10 }}>
-					<View style={{ marginBottom: 30 }}>
+					<View style={{ marginBottom: 55 }}>
 						<AppText>
 							<Text style={{ fontSize: 20 }}>Diferença:</Text>
 						</AppText>
@@ -201,12 +202,23 @@ function AppCalculator() {
 					</AppText>
 				</View>
 				<View>
-					<View style={{ marginBottom: 7 }}>
+					<View style={{ marginBottom: 16 }}>
 						<AppText>
 							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInCubicMeter ?? 0} m3{"\n"}
-							 {result?.diffInKg ?? 0}{" "}
-								kg/gás
+								{result?.diffInCubicMeter ?? 0} m3
+							</Text>
+						</AppText>
+						<View
+							style={{
+								alignSelf: "center",
+							}}
+						>
+							<FontAwesome5 name="equals" size={16} color="white" />
+						</View>
+
+						<AppText>
+							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+								{result?.diffInKg ?? 0} kg/gás
 							</Text>
 						</AppText>
 					</View>
