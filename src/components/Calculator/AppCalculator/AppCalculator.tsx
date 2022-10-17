@@ -175,7 +175,6 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ flexDirection: "row", alignItems: "center" }}>
-				<View style={{ flex: 1, height: 1, backgroundColor: "#06317a" }} />
 				<View style={{ marginHorizontal: 12 }}>
 					<AppText>
 						<Text
@@ -189,7 +188,6 @@ function AppCalculator() {
 						</Text>
 					</AppText>
 				</View>
-				<View style={{ flex: 1, height: 1, backgroundColor: "#06317a" }} />
 			</View>
 
 			<View
