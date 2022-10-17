@@ -129,7 +129,7 @@ function AppCalculator() {
 				<AppTextInputLabel>Coeficiente m³ / kg</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
 					<AppText>
-						<Text style={{ fontSize: 17, fontWeight: "bold" }}>
+						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
 							{coefficientValue}
 						</Text>
 					</AppText>
@@ -149,6 +149,21 @@ function AppCalculator() {
 						minimumTrackTintColor="#06317a"
 						maximumTrackTintColor="#FFFFFF"
 					/>
+				</View>
+				<View
+					style={{
+						flexDirection: "row",
+						justifyContent: "space-between",
+						paddingHorizontal: 15,
+						marginTop: 10,
+					}}
+				>
+					<AppText>
+						<Text style={{ color: "#969696" }}>2,0</Text>
+					</AppText>
+					<AppText>
+						<Text style={{ color: "#969696" }}>3,0</Text>
+					</AppText>
 				</View>
 			</View>
 
