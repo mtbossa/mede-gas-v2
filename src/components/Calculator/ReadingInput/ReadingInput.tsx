@@ -19,7 +19,6 @@ function ReadingInput({
 		<AppTextInput
 			keyboardType="number-pad"
 			textAlign="center"
-			textAlignVertical={"top"}
 			multiline={true}
 			numberOfLines={1}
 			placeholder="00000,000"

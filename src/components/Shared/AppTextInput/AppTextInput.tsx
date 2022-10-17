@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 		padding: 12,
 		elevation: 2,
 		backgroundColor: "#FFFFF3",
+		fontSize: 17,
 	},
 });
 

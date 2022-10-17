@@ -94,7 +94,6 @@ function AppCalculatorReadingInputs({
 const styles = StyleSheet.create({
 	input: {
 		width: "100%",
-		fontSize: 20,
 	},
 });
 
