@@ -88,9 +88,10 @@ function AppCalculator() {
 		setResult(formattedResults);
 		Keyboard.dismiss();
 	}
+	
 	return (
 		<View style={styles.mainContainer}>
-			<View style={{ marginVertical: 10 }}>
+			<View style={{ marginBottom: 5 }}>
 				<AppText>
 					<Text
 						style={{
@@ -225,7 +226,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		width: "100%",
-		paddingVertical: 10,
 		paddingHorizontal: 20,
 	},
 	input: {

@@ -28,7 +28,7 @@ function AppCalculatorReadingInputs({
 					width: "100%",
 					alignItems: "center",
 					justifyContent: "space-between",
-					backgroundColor: "#232324",
+					backgroundColor: "#e8e8e8",
 					borderRadius: 10,
 					padding: 20,
 					elevation: 10,
@@ -44,11 +44,15 @@ function AppCalculatorReadingInputs({
 				}}
 			>
 				<View style={{ flex: 2, alignItems: "center" }}>
-					<AppTextInputLabel>Valor atual</AppTextInputLabel>
+					<AppTextInputLabel style={{ color: "#222" }}>
+						Valor atual
+					</AppTextInputLabel>
 				</View>
 				<View style={{ flex: 1 }}></View>
 				<View style={{ flex: 2, alignItems: "center" }}>
-					<AppTextInputLabel>Valor anterior</AppTextInputLabel>
+					<AppTextInputLabel style={{ color: "#222" }}>
+						Valor anterior
+					</AppTextInputLabel>
 				</View>
 			</View>
 
@@ -67,9 +71,11 @@ function AppCalculatorReadingInputs({
 					/>
 				</View>
 
-				<View style={{ marginHorizontal: 20}} >
+				<View style={{ marginHorizontal: 20 }}>
 					<AppText>
-						<Text style={{ fontSize: 40, fontWeight: "bold" }}>-</Text>
+						<Text style={{ fontSize: 40, fontWeight: "bold", color: "#222" }}>
+							-
+						</Text>
 					</AppText>
 				</View>
 
