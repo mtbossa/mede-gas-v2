@@ -21,51 +21,48 @@ function Result({ result }: { result: CalculationResult }) {
 
 			<View
 				style={{
-					flexDirection: "row",
 					marginTop: 15,
-					backgroundColor: "#06317a",
+					backgroundColor: "#232630",
 					borderRadius: 10,
 					padding: 20,
-					elevation: 10,
+					elevation: 5,
+					justifyContent: "center",
+					alignItems: "center",
 				}}
 			>
-				<View style={{ marginRight: 10 }}>
-					<View style={{ marginBottom: 55 }}>
-						<AppText>
-							<Text style={{ fontSize: 20 }}>Diferença:</Text>
-						</AppText>
-					</View>
-					<AppText>
-						<Text style={{ fontSize: 20 }}>Total gasto: </Text>
-					</AppText>
-				</View>
-				<View>
-					<View style={{ marginBottom: 16 }}>
-						<AppText>
-							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInCubicMeter ?? 0} m³
-							</Text>
-						</AppText>
-						<View
-							style={{
-								alignSelf: "center",
-							}}
-						>
-							<FontAwesome5 name="equals" size={16} color="white" />
-						</View>
-
-						<AppText>
-							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInKg ?? 0} kg/gás
-							</Text>
-						</AppText>
-					</View>
+				<View
+					style={{
+						marginBottom: 16,
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
 					<AppText>
 						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-							{result?.moneySpent}
+							{result?.diffInCubicMeter ?? 0} m³
+						</Text>
+					</AppText>
+					<View
+						style={{
+							marginHorizontal: 10,
+						}}
+					>
+						<FontAwesome5 name="equals" size={16} color="white" />
+					</View>
+
+					<AppText>
+						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+							{result?.diffInKg ?? 0} kg/gás
 						</Text>
 					</AppText>
 				</View>
+
+				<AppText>
+					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+						{result?.moneySpent}
+					</Text>
+				</AppText>
 			</View>
 		</View>
 	);
