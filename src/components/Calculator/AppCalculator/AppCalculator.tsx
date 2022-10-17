@@ -13,11 +13,12 @@ import AppTextInput from "../../Shared/AppTextInput";
 import { appInputStyles } from "../../Shared/AppTextInput/AppTextInput";
 import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import ReadingInput from "../ReadingInput";
-import { FontAwesome5 } from "@expo/vector-icons";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
+import Results from "../Result";
+import Result from "../Result";
 
-interface Result {
+export interface Result {
 	diffInKg: string;
 	diffInCubicMeter: string;
 	moneySpent: string;
@@ -160,70 +161,7 @@ function AppCalculator() {
 				/>
 			</View>
 
-			<View style={{ flexDirection: "row", alignItems: "center" }}>
-				<View style={{ marginHorizontal: 12 }}>
-					<AppText>
-						<Text
-							style={{
-								fontFamily: "Heebo",
-								fontSize: 30,
-								fontWeight: "bold",
-							}}
-						>
-							Resultado
-						</Text>
-					</AppText>
-				</View>
-			</View>
-
-			<View
-				style={{
-					flexDirection: "row",
-					marginTop: 15,
-					backgroundColor: "#06317a",
-					borderRadius: 10,
-					padding: 20,
-					elevation: 10,
-				}}
-			>
-				<View style={{ marginRight: 10 }}>
-					<View style={{ marginBottom: 55 }}>
-						<AppText>
-							<Text style={{ fontSize: 20 }}>Diferença:</Text>
-						</AppText>
-					</View>
-					<AppText>
-						<Text style={{ fontSize: 20 }}>Total gasto: </Text>
-					</AppText>
-				</View>
-				<View>
-					<View style={{ marginBottom: 16 }}>
-						<AppText>
-							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInCubicMeter ?? 0} m³
-							</Text>
-						</AppText>
-						<View
-							style={{
-								alignSelf: "center",
-							}}
-						>
-							<FontAwesome5 name="equals" size={16} color="white" />
-						</View>
-
-						<AppText>
-							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{result?.diffInKg ?? 0} kg/gás
-							</Text>
-						</AppText>
-					</View>
-					<AppText>
-						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-							{result?.moneySpent}
-						</Text>
-					</AppText>
-				</View>
-			</View>
+			<Result result={result} />
 		</View>
 	);
 }
