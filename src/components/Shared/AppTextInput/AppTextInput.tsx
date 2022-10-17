@@ -8,13 +8,24 @@ import {
 } from "react-native";
 import AppInputHelper from "../AppInputHelper";
 
-function AppTextInput({ style, ...inputPropsTextInputProps }: TextInputProps) {
+function AppTextInput({
+	style,
+	onFocus,
+	onBlur,
+	...inputPropsTextInputProps
+}: TextInputProps) {
 	const [isFocused, setIsFocused] = useState(false);
 	return (
 		<View>
 			<TextInput
-				onFocus={() => setIsFocused(true)}
-				onBlur={() => setIsFocused(false)}
+				onFocus={e => {
+					setIsFocused(true);
+					onFocus(e);
+				}}
+				onBlur={e => {
+					setIsFocused(false);
+					onBlur(e);
+				}}
 				style={[styles.input, isFocused && styles.focused, style]}
 				{...inputPropsTextInputProps}
 			/>
