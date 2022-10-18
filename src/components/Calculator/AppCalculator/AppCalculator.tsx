@@ -1,5 +1,5 @@
 import numeral from "numeral";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Keyboard, StyleSheet, Text, View } from "react-native";
 import { Masks } from "react-native-mask-input";
 
@@ -10,7 +10,6 @@ import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
-import { HelperBottomSheetContext } from "../../../contexts/HelperBottomSheetContext";
 
 export interface Result {
 	diffInKg: string;
@@ -26,7 +25,6 @@ interface CalculatorForm {
 }
 
 function AppCalculator() {
-	const { openHelper } = useContext(HelperBottomSheetContext);
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>({
 			lowerReading: "",
@@ -110,10 +108,7 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ width: "100%", marginTop: 10 }}>
-				<AppTextInputLabel
-					helperButton={true}
-					onHelperButtonPress={() => openHelper()}
-				>
+				<AppTextInputLabel helperButton={true}>
 					Coeficiente m³ / kg
 				</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
