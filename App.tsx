@@ -15,6 +15,7 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import AppText from "./src/components/Shared/AppText";
 import AppCalculator from "./src/components/Calculator/AppCalculator";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
@@ -37,13 +38,15 @@ export default function App() {
 	}
 
 	return (
-		<SafeAreaView
-			onLayout={onLayoutRootView}
-			style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
-		>
-			<StatusBar />
-			<AppCalculator />
-		</SafeAreaView>
+		<GestureHandlerRootView style={{ flex: 1 }}>
+			<SafeAreaView
+				onLayout={onLayoutRootView}
+				style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
+			>
+				<StatusBar />
+				<AppCalculator />
+			</SafeAreaView>
+		</GestureHandlerRootView>
 	);
 }
 

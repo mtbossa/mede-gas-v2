@@ -1,7 +1,14 @@
 import numeral from "numeral";
-import React, { useState, useEffect } from "react";
+import React, {
+	useState,
+	useEffect,
+	useRef,
+	useMemo,
+	useCallback,
+} from "react";
 import { Button, Keyboard, StyleSheet, Text, View } from "react-native";
 import { Masks } from "react-native-mask-input";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import AppMaskInput from "../../Shared/AppMaskInput";
@@ -10,6 +17,7 @@ import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
+import bottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet";
 
 export interface Result {
 	diffInKg: string;
@@ -25,6 +33,20 @@ interface CalculatorForm {
 }
 
 function AppCalculator() {
+	// hooks
+	const sheetRef = useRef<BottomSheet>(null);
+
+	// variables
+	const snapPoints = useMemo(() => [ "50%"], []);
+
+	const handleSnapPress = useCallback((index) => {
+    sheetRef.current?.snapToIndex(index);
+  }, []);
+
+	const handleClosePress = useCallback(() => {
+		sheetRef.current?.close();
+	}, []);
+
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>({
 			lowerReading: "",
@@ -39,6 +61,10 @@ function AppCalculator() {
 		diffInCubicMeter: "0",
 		moneySpent: "R$ 0,00",
 	});
+
+	useEffect(() => {
+		sheetRef.current.forceClose();
+	}, []);
 
 	useEffect(() => {
 		const allNecessaryValuesAreNotNull = Object.values(
@@ -108,10 +134,7 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ width: "100%", marginTop: 10 }}>
-				<AppTextInputLabel
-					helperButton={true}
-					onHelperButtonPress={e => console.log(e)}
-				>
+				<AppTextInputLabel helperButton={true} onHelperButtonPress={() => handleSnapPress(0)}>
 					Coeficiente m³ / kg
 				</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -164,6 +187,17 @@ function AppCalculator() {
 			</View>
 
 			<Result result={result} />
+
+			<BottomSheet
+				ref={sheetRef}
+				snapPoints={snapPoints}
+				enablePanDownToClose={true}
+				index={-1}
+			>
+				<BottomSheetView>
+					<Text>Awesome 🔥</Text>
+				</BottomSheetView>
+			</BottomSheet>
 		</View>
 	);
 }
