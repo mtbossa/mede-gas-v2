@@ -1,4 +1,10 @@
-import React, { ReactNode, useCallback, useMemo, useRef } from "react";
+import React, {
+	ReactNode,
+	useCallback,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import { HelperBottomSheetContext } from ".";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Text } from "react-native";
@@ -8,13 +14,13 @@ interface Props {
 }
 
 function HelperBottomSheetProvider({ children }: Props) {
-	// hooks
 	const sheetRef = useRef<BottomSheet>(null);
-
-	// variables
 	const snapPoints = useMemo(() => ["50%"], []);
 
-	const openHelper = useCallback(() => {
+	const [helperText, setHelperText] = useState("");
+
+	const openHelper = useCallback((text: string) => {
+		setHelperText(text);
 		sheetRef.current?.snapToIndex(0);
 	}, []);
 
@@ -36,7 +42,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 				index={-1}
 			>
 				<BottomSheetView>
-					<Text>Awesome 🔥</Text>
+					<Text>{helperText}</Text>
 				</BottomSheetView>
 			</BottomSheet>
 		</HelperBottomSheetContext.Provider>

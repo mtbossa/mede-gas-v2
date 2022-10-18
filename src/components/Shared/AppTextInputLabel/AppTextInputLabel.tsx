@@ -7,10 +7,12 @@ import { useHelperBottomSheetContext } from "../../../contexts/HelperBottomSheet
 
 interface AppTextInputLabelProps {
 	helperButton?: boolean;
+	helperText?: string;
 }
 
 function AppTextInputLabel({
 	helperButton,
+	helperText,
 	children,
 	style,
 	...textProps
@@ -35,7 +37,7 @@ function AppTextInputLabel({
 				<View style={{ marginLeft: 7 }}>
 					<TouchableHighlight
 						style={{ borderRadius: 50 }}
-						onPress={e => openHelper()}
+						onPress={e => openHelper(helperText)}
 					>
 						<Feather name="help-circle" size={24} color="white" />
 					</TouchableHighlight>

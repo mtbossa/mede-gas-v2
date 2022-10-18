@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 interface HelperBottomSheetValues {
 	state: {
-		openHelper: () => void;
+		openHelper: (helperText: string) => void;
 		closeHelper: () => void;
 	};
 }

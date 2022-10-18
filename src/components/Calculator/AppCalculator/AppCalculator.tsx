@@ -108,7 +108,7 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ width: "100%", marginTop: 10 }}>
-				<AppTextInputLabel helperButton={true}>
+				<AppTextInputLabel helperButton={true} helperText="Teste">
 					Coeficiente m³ / kg
 				</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
