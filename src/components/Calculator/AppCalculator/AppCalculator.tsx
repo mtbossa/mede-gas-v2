@@ -1,11 +1,5 @@
 import numeral from "numeral";
-import React, {
-	useState,
-	useEffect,
-	useRef,
-	useMemo,
-	useCallback,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Keyboard, StyleSheet, Text, View } from "react-native";
 import { Masks } from "react-native-mask-input";
 
@@ -16,7 +10,7 @@ import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
-import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
+import { HelperBottomSheetContext } from "../../../contexts/HelperBottomSheetContext";
 
 export interface Result {
 	diffInKg: string;
@@ -31,7 +25,8 @@ interface CalculatorForm {
 	conversionCoefficient: string;
 }
 
-function AppCalculator({ sheetRef }: { sheetRef: any }) {
+function AppCalculator() {
+	const { openHelper } = useContext(HelperBottomSheetContext);
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>({
 			lowerReading: "",
@@ -117,7 +112,7 @@ function AppCalculator({ sheetRef }: { sheetRef: any }) {
 			<View style={{ width: "100%", marginTop: 10 }}>
 				<AppTextInputLabel
 					helperButton={true}
-					onHelperButtonPress={() => sheetRef.current?.snapToIndex(0)}
+					onHelperButtonPress={() => openHelper()}
 				>
 					Coeficiente m³ / kg
 				</AppTextInputLabel>

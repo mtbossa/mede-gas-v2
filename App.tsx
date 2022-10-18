@@ -18,7 +18,7 @@ import AppCalculator from "./src/components/Calculator/AppCalculator";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import bottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-
+import { HelperBottomSheetContext } from "./src/contexts/HelperBottomSheetContext";
 
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
@@ -36,19 +36,19 @@ export default function App() {
 		}
 	}, [fontsLoaded]);
 
-		// hooks
-		const sheetRef = useRef<BottomSheet>(null);
+	// hooks
+	const sheetRef = useRef<BottomSheet>(null);
 
-		// variables
-		const snapPoints = useMemo(() => ["50%"], []);
-	
-		const handleSnapPress = useCallback(index => {
-			sheetRef.current?.snapToIndex(index);
-		}, []);
-	
-		const handleClosePress = useCallback(() => {
-			sheetRef.current?.close();
-		}, []);
+	// variables
+	const snapPoints = useMemo(() => ["50%"], []);
+
+	const openHelper = useCallback(() => {
+		sheetRef.current?.snapToIndex(0);
+	}, []);
+
+	const handleClosePress = useCallback(() => {
+		sheetRef.current?.close();
+	}, []);
 
 	if (!fontsLoaded) {
 		return null;
@@ -56,13 +56,18 @@ export default function App() {
 
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
-			<SafeAreaView
-				onLayout={onLayoutRootView}
-				style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
-			>
-				<StatusBar />
-				<AppCalculator sheetRef={sheetRef}/>
-			</SafeAreaView>
+			<HelperBottomSheetContext.Provider value={{ openHelper }}>
+				<SafeAreaView
+					onLayout={onLayoutRootView}
+					style={[
+						SafeViewAndroid.AndroidSafeArea,
+						styles.defaultBackgroundColor,
+					]}
+				>
+					<StatusBar />
+					<AppCalculator />
+				</SafeAreaView>
+			</HelperBottomSheetContext.Provider>
 
 			{/* Helper Label Bottom Sheet */}
 			<BottomSheet
