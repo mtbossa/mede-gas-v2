@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import { Button, Keyboard, StyleSheet, Text, View } from "react-native";
 import { Masks } from "react-native-mask-input";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 
 import { calculateGasSpentValues } from "../../../services/GasCalculator";
 import AppMaskInput from "../../Shared/AppMaskInput";
@@ -17,7 +16,7 @@ import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
-import bottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet";
+import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 
 export interface Result {
 	diffInKg: string;
@@ -32,21 +31,7 @@ interface CalculatorForm {
 	conversionCoefficient: string;
 }
 
-function AppCalculator() {
-	// hooks
-	const sheetRef = useRef<BottomSheet>(null);
-
-	// variables
-	const snapPoints = useMemo(() => [ "50%"], []);
-
-	const handleSnapPress = useCallback((index) => {
-    sheetRef.current?.snapToIndex(index);
-  }, []);
-
-	const handleClosePress = useCallback(() => {
-		sheetRef.current?.close();
-	}, []);
-
+function AppCalculator({ sheetRef }: { sheetRef: any }) {
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>({
 			lowerReading: "",
@@ -61,10 +46,6 @@ function AppCalculator() {
 		diffInCubicMeter: "0",
 		moneySpent: "R$ 0,00",
 	});
-
-	useEffect(() => {
-		sheetRef.current.forceClose();
-	}, []);
 
 	useEffect(() => {
 		const allNecessaryValuesAreNotNull = Object.values(
@@ -134,7 +115,10 @@ function AppCalculator() {
 			</View>
 
 			<View style={{ width: "100%", marginTop: 10 }}>
-				<AppTextInputLabel helperButton={true} onHelperButtonPress={() => handleSnapPress(0)}>
+				<AppTextInputLabel
+					helperButton={true}
+					onHelperButtonPress={() => sheetRef.current?.snapToIndex(0)}
+				>
 					Coeficiente m³ / kg
 				</AppTextInputLabel>
 				<View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -187,17 +171,6 @@ function AppCalculator() {
 			</View>
 
 			<Result result={result} />
-
-			<BottomSheet
-				ref={sheetRef}
-				snapPoints={snapPoints}
-				enablePanDownToClose={true}
-				index={-1}
-			>
-				<BottomSheetView>
-					<Text>Awesome 🔥</Text>
-				</BottomSheetView>
-			</BottomSheet>
 		</View>
 	);
 }

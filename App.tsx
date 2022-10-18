@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import MaskInput, { Masks } from "react-native-mask-input";
 
@@ -16,6 +16,9 @@ import * as SplashScreen from "expo-splash-screen";
 import AppText from "./src/components/Shared/AppText";
 import AppCalculator from "./src/components/Calculator/AppCalculator";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import bottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+
 
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
@@ -33,6 +36,20 @@ export default function App() {
 		}
 	}, [fontsLoaded]);
 
+		// hooks
+		const sheetRef = useRef<BottomSheet>(null);
+
+		// variables
+		const snapPoints = useMemo(() => ["50%"], []);
+	
+		const handleSnapPress = useCallback(index => {
+			sheetRef.current?.snapToIndex(index);
+		}, []);
+	
+		const handleClosePress = useCallback(() => {
+			sheetRef.current?.close();
+		}, []);
+
 	if (!fontsLoaded) {
 		return null;
 	}
@@ -44,8 +61,20 @@ export default function App() {
 				style={[SafeViewAndroid.AndroidSafeArea, styles.defaultBackgroundColor]}
 			>
 				<StatusBar />
-				<AppCalculator />
+				<AppCalculator sheetRef={sheetRef}/>
 			</SafeAreaView>
+
+			{/* Helper Label Bottom Sheet */}
+			<BottomSheet
+				ref={sheetRef}
+				snapPoints={snapPoints}
+				enablePanDownToClose={true}
+				index={-1}
+			>
+				<BottomSheetView>
+					<Text>Awesome 🔥</Text>
+				</BottomSheetView>
+			</BottomSheet>
 		</GestureHandlerRootView>
 	);
 }
