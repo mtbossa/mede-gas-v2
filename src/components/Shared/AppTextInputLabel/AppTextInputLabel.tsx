@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Text, TextProps, TouchableHighlight, View } from "react-native";
 import AppText from "../AppText/AppText";
 import { Feather } from "@expo/vector-icons";
-import { HelperBottomSheetContext } from "../../../contexts/HelperBottomSheetContext";
+import { HelperBottomSheetContext } from "../../../contexts/HelperBottomSheet";
+import { useHelperBottomSheetContext } from "../../../contexts/HelperBottomSheet/hook";
 
 interface AppTextInputLabelProps {
 	helperButton?: boolean;
@@ -14,7 +15,9 @@ function AppTextInputLabel({
 	style,
 	...textProps
 }: { children: React.ReactNode } & TextProps & AppTextInputLabelProps) {
-	const { openHelper } = useContext(HelperBottomSheetContext);
+	const {
+		state: { openHelper },
+	} = useHelperBottomSheetContext();
 
 	return (
 		<View

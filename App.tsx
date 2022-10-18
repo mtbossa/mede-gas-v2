@@ -9,7 +9,8 @@ import * as SplashScreen from "expo-splash-screen";
 import AppCalculator from "./src/components/Calculator/AppCalculator";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { HelperBottomSheetContext } from "./src/contexts/HelperBottomSheetContext";
+import { HelperBottomSheetContext } from "./src/contexts/HelperBottomSheet";
+import HelperBottomSheetProvider from "./src/contexts/HelperBottomSheet/provider";
 
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
@@ -27,27 +28,13 @@ export default function App() {
 		}
 	}, [fontsLoaded]);
 
-	// hooks
-	const sheetRef = useRef<BottomSheet>(null);
-
-	// variables
-	const snapPoints = useMemo(() => ["50%"], []);
-
-	const openHelper = useCallback(() => {
-		sheetRef.current?.snapToIndex(0);
-	}, []);
-
-	const handleClosePress = useCallback(() => {
-		sheetRef.current?.close();
-	}, []);
-
 	if (!fontsLoaded) {
 		return null;
 	}
 
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
-			<HelperBottomSheetContext.Provider value={{ openHelper }}>
+			<HelperBottomSheetProvider>
 				<SafeAreaView
 					onLayout={onLayoutRootView}
 					style={[
@@ -58,19 +45,7 @@ export default function App() {
 					<StatusBar />
 					<AppCalculator />
 				</SafeAreaView>
-			</HelperBottomSheetContext.Provider>
-
-			{/* Helper Label Bottom Sheet */}
-			<BottomSheet
-				ref={sheetRef}
-				snapPoints={snapPoints}
-				enablePanDownToClose={true}
-				index={-1}
-			>
-				<BottomSheetView>
-					<Text>Awesome 🔥</Text>
-				</BottomSheetView>
-			</BottomSheet>
+			</HelperBottomSheetProvider>
 		</GestureHandlerRootView>
 	);
 }
