@@ -1,22 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import MaskInput, { Masks } from "react-native-mask-input";
-
-import ReadingInput from "./src/components/Calculator/ReadingInput";
+import { useCallback, useRef, useMemo } from "react";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
 import "./src/numeral";
-import { calculateGasSpentValues } from "./src/services/GasCalculator";
-import numeral from "numeral";
-import { removeNonNumericAndNonCommaFromString } from "./src/services/ReadingInputValidator";
-import AppTextInput from "./src/components/Shared/AppTextInput";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import AppText from "./src/components/Shared/AppText";
 import AppCalculator from "./src/components/Calculator/AppCalculator";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import bottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { HelperBottomSheetContext } from "./src/contexts/HelperBottomSheetContext";
 
