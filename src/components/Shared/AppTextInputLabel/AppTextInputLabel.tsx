@@ -19,9 +19,7 @@ function AppTextInputLabel({
 	style,
 	...textProps
 }: { children: React.ReactNode } & TextProps & AppTextInputLabelProps) {
-	const {
-		state: { openHelper },
-	} = useHelperBottomSheetContext();
+	const { openHelper } = useHelperBottomSheetContext();
 
 	return (
 		<View

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useRef, useMemo } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
 import "./src/numeral";

@@ -31,9 +31,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 	}, []);
 
 	return (
-		<HelperBottomSheetContext.Provider
-			value={{ state: { openHelper, closeHelper } }}
-		>
+		<HelperBottomSheetContext.Provider value={{ openHelper, closeHelper }}>
 			{children}
 
 			{/* Helper Label Bottom Sheet */}
