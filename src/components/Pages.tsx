@@ -1,7 +1,5 @@
 import React from "react";
-import { View, StatusBar as ReactStatusBar } from "react-native";
 import { useHelperBottomSheetContext } from "../contexts/HelperBottomSheet/hook";
-import { colors } from "../styles/colors";
 import AppCalculator from "./Calculator/AppCalculator";
 import OpacityOverlay from "./Shared/OpacityOverlay";
 
