@@ -42,6 +42,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 				snapPoints={snapPoints}
 				enablePanDownToClose={true}
 				index={-1}
+				backgroundStyle={{ backgroundColor: "#32384a" }}
 			>
 				<BottomSheetView>{helperComponent}</BottomSheetView>
 			</BottomSheet>
