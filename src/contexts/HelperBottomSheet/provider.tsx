@@ -43,6 +43,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 				enablePanDownToClose={true}
 				index={-1}
 				backgroundStyle={{ backgroundColor: "#32384a" }}
+				style={{ paddingVertical: 5, paddingHorizontal: 10 }}
 			>
 				<BottomSheetView>{helperComponent}</BottomSheetView>
 			</BottomSheet>
