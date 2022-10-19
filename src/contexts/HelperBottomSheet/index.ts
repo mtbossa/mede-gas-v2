@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import { createContext, ReactNode } from "react";
 
 interface HelperBottomSheetValues {
 	state: {
-		openHelper: (helperText: string) => void;
+		openHelper: (helperComponent: ReactNode) => void;
 		closeHelper: () => void;
 	};
 }

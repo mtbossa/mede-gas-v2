@@ -17,10 +17,12 @@ function HelperBottomSheetProvider({ children }: Props) {
 	const sheetRef = useRef<BottomSheet>(null);
 	const snapPoints = useMemo(() => ["50%"], []);
 
-	const [helperText, setHelperText] = useState("");
+	const [helperComponent, setHelperComponent] = useState<ReactNode | null>(
+		null
+	);
 
 	const openHelper = useCallback((text: string) => {
-		setHelperText(text);
+		setHelperComponent(text);
 		sheetRef.current?.snapToIndex(0);
 	}, []);
 
@@ -41,9 +43,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 				enablePanDownToClose={true}
 				index={-1}
 			>
-				<BottomSheetView>
-					<Text>{helperText}</Text>
-				</BottomSheetView>
+				<BottomSheetView>{helperComponent}</BottomSheetView>
 			</BottomSheet>
 		</HelperBottomSheetContext.Provider>
 	);
