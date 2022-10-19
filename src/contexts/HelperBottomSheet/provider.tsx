@@ -17,21 +17,26 @@ function HelperBottomSheetProvider({ children }: Props) {
 	const sheetRef = useRef<BottomSheet>(null);
 	const snapPoints = useMemo(() => ["50%"], []);
 
+	const [isOpen, setIsOpen] = useState(false);
 	const [helperComponent, setHelperComponent] = useState<ReactNode | null>(
 		null
 	);
 
 	const openHelper = useCallback((text: string) => {
 		setHelperComponent(text);
+		setIsOpen(true);
 		sheetRef.current?.snapToIndex(0);
 	}, []);
 
 	const closeHelper = useCallback(() => {
+		setIsOpen(false);
 		sheetRef.current?.close();
 	}, []);
 
 	return (
-		<HelperBottomSheetContext.Provider value={{ openHelper, closeHelper }}>
+		<HelperBottomSheetContext.Provider
+			value={{ openHelper, closeHelper, isOpen }}
+		>
 			{children}
 
 			{/* Helper Label Bottom Sheet */}
@@ -42,6 +47,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 				index={-1}
 				backgroundStyle={{ backgroundColor: "#32384a" }}
 				style={{ paddingVertical: 5, paddingHorizontal: 10 }}
+				onClose={() => setIsOpen(false)}
 			>
 				<BottomSheetView>{helperComponent}</BottomSheetView>
 			</BottomSheet>

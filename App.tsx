@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useRef, useMemo } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { useCallback } from "react";
+import { SafeAreaView } from "react-native";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
 import "./src/numeral";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import AppCalculator from "./src/components/Calculator/AppCalculator";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { HelperBottomSheetContext } from "./src/contexts/HelperBottomSheet";
 import HelperBottomSheetProvider from "./src/contexts/HelperBottomSheet/provider";
+import Pages from "./src/components/Pages";
+import { colors } from "./src/styles/colors";
 
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
@@ -35,23 +34,20 @@ export default function App() {
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
 			<HelperBottomSheetProvider>
+				<StatusBar />
 				<SafeAreaView
 					onLayout={onLayoutRootView}
 					style={[
 						SafeViewAndroid.AndroidSafeArea,
-						styles.defaultBackgroundColor,
+						colors.defaultBackgroundColor,
+						{},
 					]}
 				>
-					<StatusBar />
-					<AppCalculator />
+					<Pages />
 				</SafeAreaView>
 			</HelperBottomSheetProvider>
 		</GestureHandlerRootView>
 	);
 }
 
-const styles = StyleSheet.create({
-	defaultBackgroundColor: {
-		backgroundColor: "#141416",
-	},
-});
+
