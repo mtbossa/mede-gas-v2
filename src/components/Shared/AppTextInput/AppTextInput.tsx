@@ -12,7 +12,7 @@ function AppTextInput({
 	style,
 	onFocus,
 	onBlur,
-	...inputPropsTextInputProps
+	...props
 }: TextInputProps) {
 	const [isFocused, setIsFocused] = useState(false);
 	return (
@@ -27,7 +27,7 @@ function AppTextInput({
 					onBlur && onBlur(e);
 				}}
 				style={[styles.input, isFocused && styles.focused, style]}
-				{...inputPropsTextInputProps}
+				{...props}
 			/>
 		</View>
 	);
