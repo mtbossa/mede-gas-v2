@@ -13,9 +13,9 @@ function AppTextInput({ style, onFocus, onBlur, ...props }: TextInputProps) {
 	const [isFocused, setIsFocused] = useState(false);
 	return (
 		<View>
-			<View style={[styles.inputBorderRadius, styles.input, style]}>
+			<View style={[styles.inputBorderRadius, styles.input]}>
 				<TextInput
-					style={{ color: colors.text, fontSize: 17, fontWeight: "bold" }}
+					style={[styles.text, style]}
 					onFocus={e => {
 						setIsFocused(true);
 						onFocus && onFocus(e);
@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
 	},
 	inputBorderRadius: {
 		borderRadius: 5,
+	},
+	text: {
+		color: colors.text,
+		fontSize: 17,
+		fontWeight: "bold",
 	},
 });
 
