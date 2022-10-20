@@ -44,7 +44,7 @@ function AppTextInputLabel({
 						style={{ borderRadius: 50 }}
 						onPress={e => openHelper(helperComponent)}
 					>
-						<Feather name="help-circle" size={18} color={colors.subText} />
+						<Feather name="help-circle" size={16} color={colors.subText} />
 					</TouchableHighlight>
 				</View>
 			)}
