@@ -1,9 +1,12 @@
 import React from "react";
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 import { colors } from "../../../../styles/colors";
+import AppHelperIconButton from "../../../Shared/AppHelperIconButton";
 import AppText from "../../../Shared/AppText";
 import AppTextInputLabel from "../../../Shared/AppTextInputLabel";
 import ReadingInput from "../../ReadingInput";
+import AppBottomSheetHelper from "../../../Shared/AppBottomSheetHelper";
+import MeterValuesHelper from "../../TextHelpers/MeterValuesHelper";
 
 interface AppCalculatorReadingInputsProps {
 	style?: StyleProp<ViewStyle>;
@@ -35,17 +38,27 @@ function AppCalculatorReadingInputs({
 				style,
 			]}
 		>
-			<AppText>
-				<Text
-					style={{
-						fontFamily: "Heebo",
-						fontSize: 25,
-						fontWeight: "bold",
-					}}
-				>
-					Valores do medidor
-				</Text>
-			</AppText>
+			<View style={{ flexDirection: "row", alignItems: "center" }}>
+				<AppText>
+					<Text
+						style={{
+							fontFamily: "Heebo",
+							fontSize: 25,
+							fontWeight: "bold",
+						}}
+					>
+						Valores do medidor
+					</Text>
+				</AppText>
+				<AppHelperIconButton
+					iconSize={20}
+					helperComponent={
+						<AppBottomSheetHelper title="Onde encontrar?">
+							<MeterValuesHelper />
+						</AppBottomSheetHelper>
+					}
+				/>
+			</View>
 
 			<View
 				style={[

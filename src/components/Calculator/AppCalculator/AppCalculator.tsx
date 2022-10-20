@@ -12,6 +12,7 @@ import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculat
 import Result from "../Result";
 import { colors } from "../../../styles/colors";
 import AppBottomSheetHelper from "../../Shared/AppBottomSheetHelper";
+import CoefficientHelper from "../TextHelpers/CoefficientHelper";
 
 export interface Result {
 	diffInKg: string;
@@ -113,17 +114,7 @@ function AppCalculator() {
 						helperButton={true}
 						helperComponent={
 							<AppBottomSheetHelper title="Para que serve?">
-								<Text style={{}}>
-									Utilizado para realizar a conversão da unidade de medida m³
-									(metros cúbicos) para kg (kilo) de gás.{"\n"}
-									{"\n"}
-									<Text style={{ fontSize: 14, color: colors.subText }}>
-										Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás
-									</Text>
-									{"\n"}
-									{"\n"}Solicite ao seu provedor de gás qual é o valor que você
-									deve utilizar. (Recomendado: 2,5)
-								</Text>
+								<CoefficientHelper />
 							</AppBottomSheetHelper>
 						}
 					>
