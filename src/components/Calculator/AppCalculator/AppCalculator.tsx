@@ -79,8 +79,8 @@ function AppCalculator() {
 	}
 
 	return (
-		<View>
-			<View style={styles.mainContainer}>
+		<View style={{ height: "100%", width: "100%" }}>
+			<View style={styles.calculator}>
 				<AppCalculatorReadingInputs
 					style={{ marginBottom: 10 }}
 					biggerReading={calculatorFormValues.biggerReading}
@@ -169,23 +169,24 @@ function AppCalculator() {
 				</View>
 			</View>
 
-			<Result result={result} />
+			<View style={{ flex: 1 }}>
+				<Result result={result} />
+			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	mainContainer: {
+	calculator: {
 		justifyContent: "center",
 		alignItems: "center",
-		width: "100%",
 		paddingHorizontal: 20,
 		paddingVertical: 10,
-		marginBottom: 20,
 		borderBottomEndRadius: 15,
 		borderBottomStartRadius: 15,
 		elevation: 5,
 		backgroundColor: colors.defaultBackground,
+		flex: 2,
 	},
 	input: {
 		width: "100%",

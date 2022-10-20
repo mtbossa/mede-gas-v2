@@ -8,9 +8,9 @@ function Result({ result }: { result: CalculationResult }) {
 	return (
 		<View
 			style={{
-				elevation: 5,
 				justifyContent: "center",
 				alignItems: "center",
+				height: "100%",
 			}}
 		>
 			<AppText>
