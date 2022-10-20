@@ -97,7 +97,7 @@ function AppCalculator() {
 						uom="(kg/gás)"
 						helperButton={true}
 						helperComponent={
-							<AppBottomSheetHelper title="Para que serve?">
+							<AppBottomSheetHelper title="Como encontrar?">
 								<PriceHelper />
 							</AppBottomSheetHelper>
 						}
