@@ -79,13 +79,13 @@ function AppCalculatorReadingInputs({
 					}}
 				>
 					<View style={{ flex: 2, alignItems: "center" }}>
-						<AppTextInputLabel style={{ color: "#FFF" }}>
+						<AppTextInputLabel style={{ color: "#FFF" }} uom="(m³)">
 							Valor atual
 						</AppTextInputLabel>
 					</View>
 					<View style={{ flex: 1 }}></View>
 					<View style={{ flex: 2, alignItems: "center" }}>
-						<AppTextInputLabel style={{ color: "#FFF" }}>
+						<AppTextInputLabel style={{ color: "#FFF" }} uom="(m³)">
 							Valor anterior
 						</AppTextInputLabel>
 					</View>
