@@ -11,8 +11,8 @@ import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
 import { colors } from "../../../styles/colors";
-import AppBottomSheetHelper from "../../Shared/AppBottomSheetHelper";
-import CoefficientHelper from "../TextHelpers/CoefficientHelper";
+import AppBottomSheetHelper from "../../Shared/AppBottomSheetHelper/AppBottomSheetHelper";
+import { CoefficientHelper, PriceHelper } from "../TextHelpers";
 
 export interface Result {
 	diffInKg: string;
@@ -93,7 +93,17 @@ function AppCalculator() {
 					}
 				/>
 				<View style={{ width: "100%", marginVertical: 10 }}>
-					<AppTextInputLabel uom="(kg/gás)">Preço</AppTextInputLabel>
+					<AppTextInputLabel
+						uom="(kg/gás)"
+						helperButton={true}
+						helperComponent={
+							<AppBottomSheetHelper title="Para que serve?">
+								<PriceHelper />
+							</AppBottomSheetHelper>
+						}
+					>
+						Preço
+					</AppTextInputLabel>
 					<AppMaskInput
 						style={styles.input}
 						keyboardType="decimal-pad"
