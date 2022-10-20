@@ -12,7 +12,6 @@ function OpacityOverlay() {
 					height: "100%",
 					opacity: 0.5,
 					position: "absolute",
-					top: StatusBar.currentHeight,
 					left: 0,
 				},
 			]}
