@@ -6,46 +6,52 @@ import {
 	TextInputProps,
 	View,
 } from "react-native";
+import { colors } from "../../../styles/colors";
 import AppInputHelper from "../AppInputHelper";
 
-function AppTextInput({
-	style,
-	onFocus,
-	onBlur,
-	...props
-}: TextInputProps) {
+function AppTextInput({ style, onFocus, onBlur, ...props }: TextInputProps) {
 	const [isFocused, setIsFocused] = useState(false);
 	return (
 		<View>
-			<TextInput
-				onFocus={e => {
-					setIsFocused(true);
-					onFocus && onFocus(e);
-				}}
-				onBlur={e => {
-					setIsFocused(false);
-					onBlur && onBlur(e);
-				}}
-				style={[styles.input, isFocused && styles.focused, style]}
-				{...props}
-			/>
+			<View style={[styles.inputBorderRadius, styles.input, style]}>
+				<TextInput
+					style={{ color: colors.text, fontSize: 17, fontWeight: "bold" }}
+					onFocus={e => {
+						setIsFocused(true);
+						onFocus && onFocus(e);
+					}}
+					onBlur={e => {
+						setIsFocused(false);
+						onBlur && onBlur(e);
+					}}
+					{...props}
+				/>
+			</View>
+			{isFocused && (
+				<View
+					style={[
+						styles.inputBorderRadius,
+						{
+							width: "100%",
+							height: "100%",
+							position: "absolute",
+							borderColor: colors.inputBorderColor,
+							borderWidth: 2,
+						},
+					]}
+				></View>
+			)}
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	focused: {
-		borderColor: "#125ee0",
-		borderWidth: 2,
-		outlineStyle: "solid",
-		outlineWidth: 4,
-	},
 	input: {
-		borderRadius: 3,
 		padding: 10,
-		elevation: 2,
-		backgroundColor: "#FFFFF3",
-		fontSize: 17,
+		backgroundColor: colors.inputBackground,
+	},
+	inputBorderRadius: {
+		borderRadius: 5,
 	},
 });
 
