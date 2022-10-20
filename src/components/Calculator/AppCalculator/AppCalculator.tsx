@@ -119,7 +119,7 @@ function AppCalculator() {
 								(metros cúbicos) para kg (kilo) de gás.{"\n"}
 								{"\n"}
 								<Text style={{ fontSize: 14, color: colors.subText }}>
-									Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás.
+									Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás
 								</Text>
 								{"\n"}
 								{"\n"}Para saber qual valor utilizar, pergunte ao seu provedor
