@@ -8,6 +8,7 @@ import React, {
 import { HelperBottomSheetContext } from ".";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Text } from "react-native";
+import { colors } from "../../styles/colors";
 
 interface Props {
 	children: ReactNode;
@@ -45,7 +46,7 @@ function HelperBottomSheetProvider({ children }: Props) {
 				snapPoints={snapPoints}
 				enablePanDownToClose={true}
 				index={-1}
-				backgroundStyle={{ backgroundColor: "#32384a" }}
+				backgroundStyle={{backgroundColor: colors.primary}}
 				style={{ paddingVertical: 5, paddingHorizontal: 10 }}
 				onClose={() => setIsOpen(false)}
 			>

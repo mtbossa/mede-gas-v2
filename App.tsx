@@ -39,7 +39,9 @@ export default function App() {
 					onLayout={onLayoutRootView}
 					style={[
 						SafeViewAndroid.AndroidSafeArea,
-						colors.defaultBackgroundColor,
+						{
+							backgroundColor: colors.defaultBackground,
+						},
 					]}
 				>
 					<Pages />

@@ -6,8 +6,8 @@ function OpacityOverlay() {
 	return (
 		<View
 			style={[
-				colors.defaultBackgroundColor,
 				{
+					backgroundColor: colors.defaultBackground,
 					width: "100%",
 					height: "100%",
 					opacity: 0.5,

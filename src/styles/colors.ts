@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
 
-export const colors = StyleSheet.create({
-	defaultBackgroundColor: {
-		backgroundColor: "#141416",
-	},
-});
+export const colors = {
+	defaultBackground: "#141416",
+	primary: "#232630",
+	text: "#FFF",
+	subText: ""
+};
