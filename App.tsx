@@ -34,13 +34,13 @@ export default function App() {
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
 			<HelperBottomSheetProvider>
-				<StatusBar />
+				<StatusBar backgroundColor={colors.defaultBackground} style={"light"} />
 				<SafeAreaView
 					onLayout={onLayoutRootView}
 					style={[
 						SafeViewAndroid.AndroidSafeArea,
 						{
-							backgroundColor: colors.defaultBackground,
+							backgroundColor: colors.primary,
 						},
 					]}
 				>

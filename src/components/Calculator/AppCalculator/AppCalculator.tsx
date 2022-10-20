@@ -78,104 +78,104 @@ function AppCalculator() {
 	}
 
 	return (
-		<View style={styles.mainContainer}>
-			<AppCalculatorReadingInputs
-				style={{ marginBottom: 10 }}
-				biggerReading={calculatorFormValues.biggerReading}
-				lowerReading={calculatorFormValues.lowerReading}
-				onChangeValue={(field, value) =>
-					setCalculatorFormValues(oldValues => ({
-						...oldValues,
-						[field]: value,
-					}))
-				}
-			/>
-
-			<View style={{ width: "100%", marginVertical: 10 }}>
-				<AppTextInputLabel>Preço (kg/gás)</AppTextInputLabel>
-				<AppMaskInput
-					style={styles.input}
-					keyboardType="decimal-pad"
-					mask={Masks.BRL_CURRENCY}
-					placeholder={"R$ 0,00"}
-					maxLength={11}
-					value={calculatorFormValues.gasPriceByKg}
-					onChangeText={value =>
+		<View>
+			<View style={styles.mainContainer}>
+				<AppCalculatorReadingInputs
+					style={{ marginBottom: 10 }}
+					biggerReading={calculatorFormValues.biggerReading}
+					lowerReading={calculatorFormValues.lowerReading}
+					onChangeValue={(field, value) =>
 						setCalculatorFormValues(oldValues => ({
 							...oldValues,
-							gasPriceByKg: value,
+							[field]: value,
 						}))
 					}
 				/>
-			</View>
-
-			<View style={{ width: "100%", marginTop: 10 }}>
-				<AppTextInputLabel
-					helperButton={true}
-					helperComponent={
-						<AppBottomSheetHelper title="Para que serve?">
-							<Text style={{}}>
-								Utilizado para realizar a conversão da unidade de medida m³
-								(metros cúbicos) para kg (kilo) de gás.{"\n"}
-								{"\n"}
-								<Text style={{ fontSize: 14, color: colors.subText }}>
-									Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás
-								</Text>
-								{"\n"}
-								{"\n"}Solicite ao seu provedor de gás qual é o valor que você deve utilizar. (Recomendado: 2,5)
-							</Text>
-						</AppBottomSheetHelper>
-					}
-				>
-					Coeficiente m³ / kg
-				</AppTextInputLabel>
-				<View style={{ justifyContent: "center", alignItems: "center" }}>
-					<AppText>
-						<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-							{coefficientValue}
-						</Text>
-					</AppText>
-					<Slider
-						style={{ width: "100%", marginTop: 6 }}
-						minimumValue={2.0}
-						maximumValue={3.0}
-						step={0.1}
-						value={2.5}
-						onValueChange={e => {
-							setCoefficientValue(String(e).replace(".", ","));
+				<View style={{ width: "100%", marginVertical: 10 }}>
+					<AppTextInputLabel>Preço (kg/gás)</AppTextInputLabel>
+					<AppMaskInput
+						style={styles.input}
+						keyboardType="decimal-pad"
+						mask={Masks.BRL_CURRENCY}
+						placeholder={"R$ 0,00"}
+						maxLength={11}
+						value={calculatorFormValues.gasPriceByKg}
+						onChangeText={value =>
 							setCalculatorFormValues(oldValues => ({
 								...oldValues,
-								conversionCoefficient: String(e).replace(".", ","),
-							}));
-						}}
-						minimumTrackTintColor="#06317a"
-						maximumTrackTintColor="#FFFFFF"
+								gasPriceByKg: value,
+							}))
+						}
 					/>
 				</View>
-				<View
-					style={{
-						flexDirection: "row",
-						justifyContent: "space-between",
-						paddingHorizontal: 15,
-						marginTop: 10,
-					}}
-				>
-					<AppText>
-						<Text style={{ color: colors.subText }}>2,0</Text>
-					</AppText>
-					<AppText>
-						<Text style={{ color: colors.subText }}>3,0</Text>
-					</AppText>
+				<View style={{ width: "100%", marginTop: 10 }}>
+					<AppTextInputLabel
+						helperButton={true}
+						helperComponent={
+							<AppBottomSheetHelper title="Para que serve?">
+								<Text style={{}}>
+									Utilizado para realizar a conversão da unidade de medida m³
+									(metros cúbicos) para kg (kilo) de gás.{"\n"}
+									{"\n"}
+									<Text style={{ fontSize: 14, color: colors.subText }}>
+										Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás
+									</Text>
+									{"\n"}
+									{"\n"}Solicite ao seu provedor de gás qual é o valor que você
+									deve utilizar. (Recomendado: 2,5)
+								</Text>
+							</AppBottomSheetHelper>
+						}
+					>
+						Coeficiente m³ / kg
+					</AppTextInputLabel>
+					<View style={{ justifyContent: "center", alignItems: "center" }}>
+						<AppText>
+							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+								{coefficientValue}
+							</Text>
+						</AppText>
+						<Slider
+							style={{ width: "100%", marginTop: 6 }}
+							minimumValue={2.0}
+							maximumValue={3.0}
+							step={0.1}
+							value={2.5}
+							onValueChange={e => {
+								setCoefficientValue(String(e).replace(".", ","));
+								setCalculatorFormValues(oldValues => ({
+									...oldValues,
+									conversionCoefficient: String(e).replace(".", ","),
+								}));
+							}}
+							minimumTrackTintColor="#06317a"
+							maximumTrackTintColor="#FFFFFF"
+						/>
+					</View>
+					<View
+						style={{
+							flexDirection: "row",
+							justifyContent: "space-between",
+							paddingHorizontal: 15,
+							marginTop: 10,
+						}}
+					>
+						<AppText>
+							<Text style={{ color: colors.subText }}>2,0</Text>
+						</AppText>
+						<AppText>
+							<Text style={{ color: colors.subText }}>3,0</Text>
+						</AppText>
+					</View>
 				</View>
-			</View>
-
-			<View style={{ width: "50%", marginVertical: 20 }}>
-				<Button
-					title="Calcular"
-					color={"#125ee0"}
-					onPress={calculate}
-					disabled={calculateButtonDisabled}
-				/>
+				<View style={{ width: "50%", marginVertical: 20 }}>
+					<Button
+						title="Calcular"
+						color={"#125ee0"}
+						onPress={calculate}
+						disabled={calculateButtonDisabled}
+					/>
+				</View>
 			</View>
 
 			<Result result={result} />
@@ -190,6 +190,11 @@ const styles = StyleSheet.create({
 		width: "100%",
 		paddingHorizontal: 20,
 		paddingVertical: 10,
+		marginBottom: 20,
+		borderBottomEndRadius: 15,
+		borderBottomStartRadius: 15,
+		elevation: 5,
+		backgroundColor: colors.defaultBackground,
 	},
 	input: {
 		width: "100%",
