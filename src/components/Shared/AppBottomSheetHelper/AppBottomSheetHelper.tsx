@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import AppText from "../AppText";
 
-interface AppHelperProps {
+interface AppBottomSheetHelperProps {
 	title: string;
 	children: ReactNode;
 	descriptionStyle?: StyleProp<TextStyle>;
 }
 
-function AppHelper({ title, children, descriptionStyle }: AppHelperProps) {
+function AppBottomSheetHelper({ title, children, descriptionStyle }: AppBottomSheetHelperProps) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.titleContainer}>
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
 		fontSize: 17,
 	},
 });
-export default AppHelper;
+export default AppBottomSheetHelper;
