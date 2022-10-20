@@ -122,8 +122,7 @@ function AppCalculator() {
 									Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás
 								</Text>
 								{"\n"}
-								{"\n"}Para saber qual valor utilizar, pergunte ao seu provedor
-								de gás.
+								{"\n"}Solicite ao seu provedor de gás qual é o valor que você deve utilizar.
 							</Text>
 						</AppBottomSheetHelper>
 					}
