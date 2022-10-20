@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 		fontFamily: "Heebo",
 	},
 	description: {
-		fontSize: 17,
+		fontSize: 16,
 	},
 });
 export default AppBottomSheetHelper;
