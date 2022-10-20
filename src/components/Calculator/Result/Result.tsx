@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import AppText from "../../Shared/AppText";
 import { Result as CalculationResult } from "../AppCalculator/AppCalculator";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -17,8 +17,9 @@ function Result({ result }: { result: CalculationResult }) {
 				<Text
 					style={{
 						fontFamily: "Heebo",
-						fontSize: 30,
-						fontWeight: "bold",
+						fontSize: 14,
+						// letterSpacing: 1.1,
+						textTransform: "uppercase",
 					}}
 				>
 					Resultado
@@ -27,14 +28,15 @@ function Result({ result }: { result: CalculationResult }) {
 
 			<View
 				style={{
-					marginTop: 15,
+					marginTop: 17,
 					flexDirection: "row",
 					justifyContent: "center",
 					alignItems: "center",
+					marginBottom: 10,
 				}}
 			>
 				<AppText>
-					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
+					<Text style={styles.resultText}>
 						{result?.diffInCubicMeter ?? 0} m³
 					</Text>
 				</AppText>
@@ -47,19 +49,22 @@ function Result({ result }: { result: CalculationResult }) {
 				</View>
 
 				<AppText>
-					<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-						{result?.diffInKg ?? 0} kg/gás
-					</Text>
+					<Text style={styles.resultText}>{result?.diffInKg ?? 0} kg/gás</Text>
 				</AppText>
 			</View>
-
+					
 			<AppText>
-				<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-					{result?.moneySpent}
-				</Text>
+				<Text style={styles.resultText}>{result?.moneySpent}</Text>
 			</AppText>
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	resultText: {
+		fontSize: 26,
+		fontWeight: "bold",
+	},
+});
 
 export default Result;
