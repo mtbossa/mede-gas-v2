@@ -115,11 +115,15 @@ function AppCalculator() {
 					helperComponent={
 						<AppBottomSheetHelper title="Para que serve?">
 							<Text style={{}}>
-								Utilizado para realizar a conversão da unidade de medida m³ (metros cúbicos) para kg (kilo) de gás.{"\n"}
+								Utilizado para realizar a conversão da unidade de medida m³
+								(metros cúbicos) para kg (kilo) de gás.{"\n"}
 								{"\n"}
-								Exemplo: 1,000 m³ * 2,5 = 2,500 kg / gás.
+								<Text style={{ fontSize: 14, color: colors.subText }}>
+									Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás.
+								</Text>
 								{"\n"}
-								{"\n"}Para saber qual valor utilizar, pergunte ao seu provedor de gás.
+								{"\n"}Para saber qual valor utilizar, pergunte ao seu provedor
+								de gás.
 							</Text>
 						</AppBottomSheetHelper>
 					}
