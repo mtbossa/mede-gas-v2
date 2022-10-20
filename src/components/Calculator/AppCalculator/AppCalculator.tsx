@@ -10,6 +10,7 @@ import AppTextInputLabel from "../../Shared/AppTextInputLabel";
 import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
+import { colors } from "../../../styles/colors";
 
 export interface Result {
 	diffInKg: string;
@@ -146,10 +147,10 @@ function AppCalculator() {
 					}}
 				>
 					<AppText>
-						<Text style={{ color: "#969696" }}>2,0</Text>
+						<Text style={{ color: colors.subText }}>2,0</Text>
 					</AppText>
 					<AppText>
-						<Text style={{ color: "#969696" }}>3,0</Text>
+						<Text style={{ color: colors.subText }}>3,0</Text>
 					</AppText>
 				</View>
 			</View>

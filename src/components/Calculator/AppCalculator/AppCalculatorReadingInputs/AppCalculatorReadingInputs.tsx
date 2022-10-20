@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { colors } from "../../../../styles/colors";
 import AppText from "../../../Shared/AppText";
 import AppTextInputLabel from "../../../Shared/AppTextInputLabel";
 import ReadingInput from "../../ReadingInput";
@@ -24,7 +25,7 @@ function AppCalculatorReadingInputs({
 		<View
 			style={[
 				{
-					backgroundColor: "#232630",
+					backgroundColor: colors.primary,
 					borderRadius: 10,
 					elevation: 10,
 					alignItems: "center",
