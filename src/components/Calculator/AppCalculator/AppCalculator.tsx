@@ -17,25 +17,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import useCalculatorForm from "../../../hooks/Calculator/useCalculatorForm";
 
 function AppCalculator() {
-	const {
-		calculatorFormValues,
-		coefficientValue,
-		calculateButtonDisabled,
-		result,
-		setCalculatorFormValues,
-		setCoefficientValue,
-		calculate,
-	} = useCalculatorForm();
+	const calculatorHook = useCalculatorForm();
 
 	return (
 		<View style={{ height: "100%", width: "100%" }}>
 			<View style={styles.calculator}>
 				<AppCalculatorReadingInputs
 					style={{ marginBottom: 10 }}
-					biggerReading={calculatorFormValues.biggerReading}
-					lowerReading={calculatorFormValues.lowerReading}
+					biggerReading={calculatorHook.calculatorFormValues.biggerReading}
+					lowerReading={calculatorHook.calculatorFormValues.lowerReading}
 					onChangeValue={(field, value) =>
-						setCalculatorFormValues(oldValues => ({
+						calculatorHook.setCalculatorFormValues(oldValues => ({
 							...oldValues,
 							[field]: value,
 						}))
@@ -59,9 +51,9 @@ function AppCalculator() {
 						mask={Masks.BRL_CURRENCY}
 						placeholder={"R$ 0,00"}
 						maxLength={11}
-						value={calculatorFormValues.gasPriceByKg}
+						value={calculatorHook.calculatorFormValues.gasPriceByKg}
 						onChangeText={value =>
-							setCalculatorFormValues(oldValues => ({
+							calculatorHook.setCalculatorFormValues(oldValues => ({
 								...oldValues,
 								gasPriceByKg: value,
 							}))
@@ -82,7 +74,7 @@ function AppCalculator() {
 					<View style={{ justifyContent: "center", alignItems: "center" }}>
 						<AppText>
 							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{coefficientValue}
+								{calculatorHook.coefficientValue}
 							</Text>
 						</AppText>
 						<Slider
@@ -92,8 +84,8 @@ function AppCalculator() {
 							step={0.1}
 							value={2.5}
 							onValueChange={e => {
-								setCoefficientValue(String(e).replace(".", ","));
-								setCalculatorFormValues(oldValues => ({
+								calculatorHook.setCoefficientValue(String(e).replace(".", ","));
+								calculatorHook.setCalculatorFormValues(oldValues => ({
 									...oldValues,
 									conversionCoefficient: String(e).replace(".", ","),
 								}));
@@ -122,14 +114,16 @@ function AppCalculator() {
 					<Button
 						title="Calcular"
 						color={"#125ee0"}
-						onPress={() => calculate(calculatorFormValues)}
-						disabled={calculateButtonDisabled}
+						onPress={() =>
+							calculatorHook.calculate(calculatorHook.calculatorFormValues)
+						}
+						disabled={calculatorHook.calculateButtonDisabled}
 					/>
 				</View>
 			</View>
 
 			<View style={{ flex: 1 }}>
-				<Result result={result} />
+				<Result result={calculatorHook.result} />
 			</View>
 		</View>
 	);
