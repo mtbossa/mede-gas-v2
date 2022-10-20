@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import {
+	Pressable,
 	StyleProp,
 	StyleSheet,
 	Text,
@@ -7,7 +8,10 @@ import {
 	TextStyle,
 	View,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { colors } from "../../../styles/colors";
 import AppText from "../AppText";
+import { useHelperBottomSheetContext } from "../../../contexts/HelperBottomSheet/hook";
 
 interface AppBottomSheetHelperProps {
 	title: string;
@@ -15,13 +19,21 @@ interface AppBottomSheetHelperProps {
 	descriptionStyle?: StyleProp<TextStyle>;
 }
 
-function AppBottomSheetHelper({ title, children, descriptionStyle }: AppBottomSheetHelperProps) {
+function AppBottomSheetHelper({
+	title,
+	children,
+	descriptionStyle,
+}: AppBottomSheetHelperProps) {
+	const { closeHelper } = useHelperBottomSheetContext();
 	return (
 		<View style={styles.container}>
 			<View style={styles.titleContainer}>
 				<AppText>
 					<Text style={styles.title}>{title}</Text>
 				</AppText>
+				<Pressable onPress={() => closeHelper()}>
+					<AntDesign name="close" size={20} color={colors.subText} />
+				</Pressable>
 			</View>
 
 			<AppText>
@@ -37,7 +49,10 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 	},
 	titleContainer: {
+		flexDirection: "row",
 		marginBottom: 10,
+		justifyContent: "space-between",
+		alignItems: "center",
 	},
 	title: {
 		fontSize: 25,
