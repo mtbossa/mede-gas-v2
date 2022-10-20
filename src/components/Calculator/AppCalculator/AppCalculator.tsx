@@ -40,7 +40,7 @@ function AppCalculator() {
 	const [result, setResult] = useState<Result>({
 		diffInKg: "0",
 		diffInCubicMeter: "0",
-		moneySpent: "R$ 0,00",
+		moneySpent: "0,00",
 	});
 
 	useEffect(() => {
@@ -71,7 +71,7 @@ function AppCalculator() {
 		const formattedResults = {
 			diffInCubicMeter: numeral(calcResults.diffInCubicMeter).format("0,0.000"),
 			diffInKg: numeral(calcResults.diffInKg).format("0,0.000"),
-			moneySpent: numeral(calcResults.moneySpent).format("$ 0,0.00"),
+			moneySpent: numeral(calcResults.moneySpent).format("0,0.00"),
 		};
 
 		setResult(formattedResults);

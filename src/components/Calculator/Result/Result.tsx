@@ -58,7 +58,9 @@ function Result({ result }: { result: CalculationResult }) {
 			</View>
 
 			<AppText>
-				<Text style={styles.resultText}>{result?.moneySpent}</Text>
+				<Text style={styles.resultText}>
+					<Text style={styles.uomText}>R$</Text> {result?.moneySpent}
+				</Text>
 			</AppText>
 		</View>
 	);
@@ -66,7 +68,7 @@ function Result({ result }: { result: CalculationResult }) {
 
 const styles = StyleSheet.create({
 	resultText: {
-		fontSize: 26,
+		fontSize: 24,
 		fontWeight: "bold",
 	},
 	uomText: { color: colors.subText, fontFamily: "Heebo", fontSize: 16 },
