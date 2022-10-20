@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import AppText from "../../Shared/AppText";
 import { Result as CalculationResult } from "../AppCalculator/AppCalculator";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { colors } from "../../../styles/colors";
 
 function Result({ result }: { result: CalculationResult }) {
 	return (
@@ -37,7 +38,8 @@ function Result({ result }: { result: CalculationResult }) {
 			>
 				<AppText>
 					<Text style={styles.resultText}>
-						{result?.diffInCubicMeter ?? 0} m³
+						{result?.diffInCubicMeter ?? 0}{" "}
+						<Text style={styles.uomText}>m³</Text>
 					</Text>
 				</AppText>
 				<View
@@ -49,10 +51,12 @@ function Result({ result }: { result: CalculationResult }) {
 				</View>
 
 				<AppText>
-					<Text style={styles.resultText}>{result?.diffInKg ?? 0} kg/gás</Text>
+					<Text style={styles.resultText}>
+						{result?.diffInKg ?? 0} <Text style={styles.uomText}>kg/gás</Text>
+					</Text>
 				</AppText>
 			</View>
-					
+
 			<AppText>
 				<Text style={styles.resultText}>{result?.moneySpent}</Text>
 			</AppText>
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
 		fontSize: 26,
 		fontWeight: "bold",
 	},
+	uomText: { color: colors.subText, fontFamily: "Heebo", fontSize: 16 },
 });
 
 export default Result;
