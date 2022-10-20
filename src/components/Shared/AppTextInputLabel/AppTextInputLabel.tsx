@@ -4,6 +4,7 @@ import AppText from "../AppText/AppText";
 import { Feather } from "@expo/vector-icons";
 import { HelperBottomSheetContext } from "../../../contexts/HelperBottomSheet";
 import { useHelperBottomSheetContext } from "../../../contexts/HelperBottomSheet/hook";
+import { colors } from "../../../styles/colors";
 
 interface AppTextInputLabelProps {
 	helperButton?: boolean;
@@ -23,7 +24,11 @@ function AppTextInputLabel({
 
 	return (
 		<View
-			style={{ marginBottom: 10, flexDirection: "row", alignItems: "center" }}
+			style={{
+				marginBottom: 10,
+				flexDirection: "row",
+				alignItems: "center",
+			}}
 		>
 			<AppText>
 				<Text
@@ -39,7 +44,7 @@ function AppTextInputLabel({
 						style={{ borderRadius: 50 }}
 						onPress={e => openHelper(helperComponent)}
 					>
-						<Feather name="help-circle" size={24} color="white" />
+						<Feather name="help-circle" size={18} color={colors.subText} />
 					</TouchableHighlight>
 				</View>
 			)}
