@@ -8,15 +8,19 @@ import {
 } from "../../../services/ReadingInputValidator";
 import AppTextInput from "../../Shared/AppTextInput";
 
-type ReadingInputProps = {} & TextInputProps;
+type ReadingInputProps = {
+	errorMessage?: string;
+} & TextInputProps;
 
 function ReadingInput({
 	value,
 	onChangeText,
+	errorMessage,
 	...inputPropsTextInputProps
 }: ReadingInputProps) {
 	return (
 		<AppTextInput
+			errorMessage={errorMessage}
 			keyboardType="number-pad"
 			textAlign="center"
 			multiline={true}

@@ -100,6 +100,7 @@ function AppCalculatorReadingInputs({
 				>
 					<View style={{ flex: 2 }}>
 						<ReadingInput
+							errorMessage="oi"
 							style={[styles.input]}
 							value={biggerReading}
 							onChangeText={value => onChangeValue("biggerReading", value)}

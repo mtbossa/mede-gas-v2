@@ -6,6 +6,7 @@ export const colors = {
 	secondary: "#2769d9",
 	inputBackground: "#4b5163",
 	inputBorderColor: "#afb7cc",
+	inputBorderColorError: "#c91423",
 	text: "#FFF",
 	subText: "#969696",
 };
