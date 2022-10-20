@@ -13,6 +13,7 @@ import Result from "../Result";
 import { colors } from "../../../styles/colors";
 import AppBottomSheetHelper from "../../Shared/AppBottomSheetHelper/AppBottomSheetHelper";
 import { CoefficientHelper, PriceHelper } from "../TextHelpers";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface Result {
 	diffInKg: string;
@@ -27,14 +28,16 @@ interface CalculatorForm {
 	conversionCoefficient: string;
 }
 
+const INITIAL_FORM_STATE = {
+	lowerReading: "",
+	biggerReading: "",
+	gasPriceByKg: "",
+	conversionCoefficient: "2,5",
+};
+
 function AppCalculator() {
 	const [calculatorFormValues, setCalculatorFormValues] =
-		useState<CalculatorForm>({
-			lowerReading: "",
-			biggerReading: "",
-			gasPriceByKg: "",
-			conversionCoefficient: "2,5",
-		});
+		useState<CalculatorForm>(INITIAL_FORM_STATE);
 	const [coefficientValue, setCoefficientValue] = useState("2,5");
 	const [calculateButtonDisabled, setCalculateButtonDisabled] = useState(true);
 	const [result, setResult] = useState<Result>({
@@ -42,6 +45,19 @@ function AppCalculator() {
 		diffInCubicMeter: "0",
 		moneySpent: "0,00",
 	});
+
+	useEffect(() => {
+		(async () => {
+			try {
+				const jsonValue = await AsyncStorage.getItem("calculatorFormValues");
+				if (jsonValue) {
+					const form = JSON.parse(jsonValue);
+					setCalculatorFormValues(form);
+					calculate(form);
+				}
+			} catch (e) {}
+		})();
+	}, []);
 
 	useEffect(() => {
 		const allNecessaryValuesAreNotNull = Object.values(
@@ -53,12 +69,9 @@ function AppCalculator() {
 			: setCalculateButtonDisabled(true);
 	}, [calculatorFormValues]);
 
-	function calculate() {
+	function calculate(formValues: CalculatorForm) {
 		let valuesAsNumbers = Object.fromEntries(
-			Object.entries(calculatorFormValues).map(([k, v]) => [
-				k,
-				numeral(v).value(),
-			])
+			Object.entries(formValues).map(([k, v]) => [k, numeral(v).value()])
 		);
 
 		const calcResults = calculateGasSpentValues({
@@ -76,6 +89,13 @@ function AppCalculator() {
 
 		setResult(formattedResults);
 		Keyboard.dismiss();
+
+		(async () => {
+			try {
+				const jsonValue = JSON.stringify(formValues);
+				await AsyncStorage.setItem("calculatorFormValues", jsonValue);
+			} catch (e) {}
+		})();
 	}
 
 	return (
@@ -173,7 +193,7 @@ function AppCalculator() {
 					<Button
 						title="Calcular"
 						color={"#125ee0"}
-						onPress={calculate}
+						onPress={() => calculate(calculatorFormValues)}
 						disabled={calculateButtonDisabled}
 					/>
 				</View>
