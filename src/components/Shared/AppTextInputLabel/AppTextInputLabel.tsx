@@ -10,6 +10,7 @@ interface AppTextInputLabelProps {
 	helperButton?: boolean;
 	helperText?: string;
 	helperComponent?: ReactNode;
+	uom?: string;
 }
 
 function AppTextInputLabel({
@@ -18,6 +19,7 @@ function AppTextInputLabel({
 	helperComponent,
 	children,
 	style,
+	uom,
 	...textProps
 }: { children: React.ReactNode } & TextProps & AppTextInputLabelProps) {
 	const { openHelper } = useHelperBottomSheetContext();
@@ -38,6 +40,16 @@ function AppTextInputLabel({
 					{children}
 				</Text>
 			</AppText>
+			<Text
+				style={{
+					fontSize: 13,
+					color: colors.subText,
+					fontFamily: "Heebo",
+				}}
+			>
+				{" "}
+				{uom}
+			</Text>
 			{helperButton && (
 				<View style={{ marginLeft: 7 }}>
 					<TouchableHighlight
