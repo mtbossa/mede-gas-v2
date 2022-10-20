@@ -6,7 +6,7 @@ export default function CoefficientHelper() {
 	return (
 		<Text>
 			Utilizado para realizar a conversão da unidade de medida m³ (metros
-			cúbicos) para kg (kilo) de gás.{"\n"}
+			cúbicos) para kg (quilo) de gás.{"\n"}
 			{"\n"}
 			<Text style={{ fontSize: 14, color: colors.subText }}>
 				Exemplo: 1,000 m³ x 2,5 (coeficiente) = 2,500 kg / gás
