@@ -11,6 +11,7 @@ import Slider from "@react-native-community/slider";
 import AppCalculatorReadingInputs from "./AppCalculatorReadingInputs/AppCalculatorReadingInputs";
 import Result from "../Result";
 import { colors } from "../../../styles/colors";
+import AppHelper from "../../Shared/AppHelper";
 
 export interface Result {
 	diffInKg: string;
@@ -111,7 +112,11 @@ function AppCalculator() {
 			<View style={{ width: "100%", marginTop: 10 }}>
 				<AppTextInputLabel
 					helperButton={true}
-					helperComponent={<Text>oi</Text>}
+					helperComponent={
+						<AppHelper title="Para que serve?">
+							<Text>a</Text>
+						</AppHelper>
+					}
 				>
 					Coeficiente m³ / kg
 				</AppTextInputLabel>
