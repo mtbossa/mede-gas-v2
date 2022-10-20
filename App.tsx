@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useCallback } from "react";
-import { SafeAreaView } from "react-native";
+import { KeyboardAvoidingView, Platform, SafeAreaView } from "react-native";
 import SafeViewAndroid from "./src/styles/SafeViewAndroid";
 
 import "./src/numeral";
@@ -44,7 +44,12 @@ export default function App() {
 						},
 					]}
 				>
-					<Pages />
+					<KeyboardAvoidingView
+						behavior={Platform.OS === "ios" ? "padding" : "height"}
+						enabled={false}
+					>
+						<Pages />
+					</KeyboardAvoidingView>
 				</SafeAreaView>
 			</HelperBottomSheetProvider>
 		</GestureHandlerRootView>
