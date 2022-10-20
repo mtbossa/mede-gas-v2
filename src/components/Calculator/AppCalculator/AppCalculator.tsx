@@ -157,7 +157,7 @@ function AppCalculator() {
 							flexDirection: "row",
 							justifyContent: "space-between",
 							paddingHorizontal: 15,
-							marginTop: 10,
+							marginTop: 5,
 						}}
 					>
 						<AppText>
