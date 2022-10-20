@@ -7,9 +7,13 @@ import { useHelperBottomSheetContext } from "../../../contexts/HelperBottomSheet
 
 interface AppHelperIconButtonProps {
 	helperComponent: ReactNode;
+	iconSize?: number;
 }
 
-function AppHelperIconButton({ helperComponent }: AppHelperIconButtonProps) {
+function AppHelperIconButton({
+	helperComponent,
+	iconSize,
+}: AppHelperIconButtonProps) {
 	const { openHelper } = useHelperBottomSheetContext();
 
 	return (
@@ -18,7 +22,11 @@ function AppHelperIconButton({ helperComponent }: AppHelperIconButtonProps) {
 				style={{ borderRadius: 50 }}
 				onPress={e => openHelper(helperComponent)}
 			>
-				<Feather name="help-circle" size={16} color={colors.subText} />
+				<Feather
+					name="help-circle"
+					size={iconSize || 16}
+					color={colors.subText}
+				/>
 			</TouchableHighlight>
 		</View>
 	);
