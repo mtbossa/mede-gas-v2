@@ -27,6 +27,7 @@ function AppTextInput({
 	style,
 	onFocus,
 	onBlur,
+	onChangeText,
 	render,
 	...props
 }: TextInputProps & AppTextInputProps) {
@@ -40,11 +41,15 @@ function AppTextInput({
 	const handleOnFocus = useCallback(
 		(e: NativeSyntheticEvent<TextInputFocusEventData>) => {
 			setIsFocused(true);
-			setLocalErrorMessage("");
 			onFocus && onFocus(e);
 		},
 		[]
 	);
+
+	const handleOnChangeText = useCallback((text: string) => {
+		setLocalErrorMessage("");
+		onChangeText && onChangeText(text);
+	}, []);
 
 	const handleOnBlur = useCallback(
 		(e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -97,6 +102,7 @@ function AppTextInput({
 							style={[styles.text, style]}
 							onFocus={handleOnFocus}
 							onBlur={handleOnBlur}
+							onChangeText={handleOnChangeText}
 							{...props}
 						/>
 					)}
