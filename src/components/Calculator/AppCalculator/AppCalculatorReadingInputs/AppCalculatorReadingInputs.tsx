@@ -7,15 +7,13 @@ import AppTextInputLabel from "../../../Shared/AppTextInputLabel";
 import ReadingInput from "../../ReadingInput";
 import AppBottomSheetHelper from "../../../Shared/AppBottomSheetHelper";
 import MeterValuesHelper from "../../TextHelpers/MeterValuesHelper";
+import { FormField } from "../../../../hooks/Calculator/useCalculatorForm";
 
 interface AppCalculatorReadingInputsProps {
 	style?: StyleProp<ViewStyle>;
-	biggerReading: string;
-	lowerReading: string;
-	onChangeValue: (
-		field: "biggerReading" | "lowerReading",
-		value: string
-	) => void;
+	biggerReading: FormField;
+	lowerReading: FormField;
+	onChangeValue: (field: "biggerReading" | "lowerReading", value: string) => void;
 }
 
 function AppCalculatorReadingInputs({
@@ -100,25 +98,24 @@ function AppCalculatorReadingInputs({
 				>
 					<View style={{ flex: 2 }}>
 						<ReadingInput
-							errorMessage="oi"
+							errorMessage={biggerReading.errors[0]}
 							style={[styles.input]}
-							value={biggerReading}
+							value={biggerReading.value}
 							onChangeText={value => onChangeValue("biggerReading", value)}
 						/>
 					</View>
 
 					<View style={{ marginHorizontal: 13 }}>
 						<AppText>
-							<Text style={{ fontSize: 40, fontWeight: "bold", color: "#FFF" }}>
-								-
-							</Text>
+							<Text style={{ fontSize: 40, fontWeight: "bold", color: "#FFF" }}>-</Text>
 						</AppText>
 					</View>
 
 					<View style={{ flex: 2 }}>
 						<ReadingInput
+							errorMessage={lowerReading.errors[0]}
 							style={[styles.input]}
-							value={lowerReading}
+							value={lowerReading.value}
 							onChangeText={value => onChangeValue("lowerReading", value)}
 						/>
 					</View>

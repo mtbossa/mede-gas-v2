@@ -27,10 +27,12 @@ function AppCalculator() {
 					biggerReading={calculatorHook.calculatorFormValues.biggerReading}
 					lowerReading={calculatorHook.calculatorFormValues.lowerReading}
 					onChangeValue={(field, value) =>
-						calculatorHook.setCalculatorFormValues(oldValues => ({
-							...oldValues,
-							[field]: value,
-						}))
+						calculatorHook.setCalculatorFormValues(oldValues => {
+							const updatedForm = { ...oldValues };
+							updatedForm[field].value = value;
+							updatedForm[field].errors = [];
+							return updatedForm;
+						})
 					}
 				/>
 				<View style={{ width: "100%", marginVertical: 10 }}>
@@ -50,12 +52,14 @@ function AppCalculator() {
 						mask={Masks.BRL_CURRENCY}
 						placeholder={"R$ 0,00"}
 						maxLength={11}
-						value={calculatorHook.calculatorFormValues.gasPriceByKg}
+						value={calculatorHook.calculatorFormValues.gasPriceByKg.value}
 						onChangeText={value =>
-							calculatorHook.setCalculatorFormValues(oldValues => ({
-								...oldValues,
-								gasPriceByKg: value,
-							}))
+							calculatorHook.setCalculatorFormValues(oldValues => {
+								const updatedForm = { ...oldValues };
+								updatedForm.gasPriceByKg.value = value;
+								updatedForm.gasPriceByKg.errors = [];
+								return updatedForm;
+							})
 						}
 					/>
 				</View>
@@ -84,10 +88,12 @@ function AppCalculator() {
 							value={2.5}
 							onValueChange={e => {
 								calculatorHook.setCoefficientValue(String(e).replace(".", ","));
-								calculatorHook.setCalculatorFormValues(oldValues => ({
-									...oldValues,
-									conversionCoefficient: String(e).replace(".", ","),
-								}));
+								calculatorHook.setCalculatorFormValues(oldValues => {
+									const updatedForm = { ...oldValues };
+									updatedForm.conversionCoefficient.value = String(e).replace(".", ",");
+									updatedForm.conversionCoefficient.errors = [];
+									return updatedForm;
+								});
 							}}
 							minimumTrackTintColor="#06317a"
 							maximumTrackTintColor="#FFFFFF"
@@ -113,9 +119,7 @@ function AppCalculator() {
 					<Button
 						title="Calcular"
 						color={"#125ee0"}
-						onPress={() =>
-							calculatorHook.calculate(calculatorHook.calculatorFormValues)
-						}
+						onPress={() => calculatorHook.calculate(calculatorHook.calculatorFormValues)}
 						disabled={calculatorHook.calculateButtonDisabled}
 					/>
 				</View>

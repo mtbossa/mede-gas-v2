@@ -5,22 +5,26 @@ import numeral from "numeral";
 import { calculateGasSpentValues } from "../../services/GasCalculator";
 import { Keyboard } from "react-native";
 
+export interface FormField {
+	value: string;
+	errors: string[];
+}
 interface CalculatorForm {
-	lowerReading: string;
-	biggerReading: string;
-	gasPriceByKg: string;
-	conversionCoefficient: string;
+	lowerReading: FormField;
+	biggerReading: FormField;
+	gasPriceByKg: FormField;
+	conversionCoefficient: FormField;
 }
 export interface Result {
 	diffInKg: string;
 	diffInCubicMeter: string;
 	moneySpent: string;
 }
-const INITIAL_FORM_STATE = {
-	lowerReading: "",
-	biggerReading: "",
-	gasPriceByKg: "",
-	conversionCoefficient: "2,5",
+const INITIAL_FORM_STATE: CalculatorForm = {
+	lowerReading: { value: "", errors: [] },
+	biggerReading: { value: "", errors: [] },
+	gasPriceByKg: { value: "", errors: [] },
+	conversionCoefficient: { value: "2,5", errors: [] },
 };
 
 export default function useCalculatorForm() {
@@ -34,25 +38,24 @@ export default function useCalculatorForm() {
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>(INITIAL_FORM_STATE);
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const jsonValue = await AsyncStorage.getItem(
-					LocalStorageKeys.CalculatorFormValues
-				);
-				if (jsonValue) {
-					const form = JSON.parse(jsonValue);
-					setCalculatorFormValues(form);
-					calculate(form);
-				}
-			} catch (e) {}
-		})();
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		try {
+	// 			const jsonValue = await AsyncStorage.getItem(
+	// 				LocalStorageKeys.CalculatorFormValues
+	// 			);
+	// 			if (jsonValue) {
+	// 				const form = JSON.parse(jsonValue);
+	// 				setCalculatorFormValues(form);
+	// 				calculate(form);
+	// 			}
+	// 		} catch (e) {}
+	// 	})();
+	// }, []);
 
 	useEffect(() => {
-		const allNecessaryValuesAreNotNull = Object.values(
-			calculatorFormValues
-		).every(value => !!value);
+		const formFields = Object.values(calculatorFormValues) as FormField[];
+		const allNecessaryValuesAreNotNull = formFields.every(formField => !!formField.value);
 
 		allNecessaryValuesAreNotNull
 			? setCalculateButtonDisabled(false)
@@ -60,9 +63,22 @@ export default function useCalculatorForm() {
 	}, [calculatorFormValues]);
 
 	function calculate(formValues: CalculatorForm) {
-		let valuesAsNumbers = Object.fromEntries(
-			Object.entries(formValues).map(([k, v]) => [k, numeral(v).value()])
-		);
+		const formEntries = Object.entries(formValues) as [keyof CalculatorForm, FormField][];
+		const numbers = formEntries.map(([k, v]) => [k, numeral(v.value).value()]) as [
+			keyof CalculatorForm,
+			number
+		][];
+		const valuesAsNumbers = Object.fromEntries(numbers);
+
+		if (valuesAsNumbers.biggerReading <= valuesAsNumbers.lowerReading) {
+			setCalculatorFormValues(oldValues => {
+				const updatedForm = { ...oldValues };
+				updatedForm.biggerReading.errors = ["Valor inválido", ...updatedForm.biggerReading.errors];
+				setCalculateButtonDisabled(true);
+				return updatedForm;
+			});
+			return;
+		}
 
 		const calcResults = calculateGasSpentValues({
 			lastReadingCubicMeter: valuesAsNumbers.biggerReading,
@@ -83,10 +99,7 @@ export default function useCalculatorForm() {
 		(async () => {
 			try {
 				const jsonValue = JSON.stringify(formValues);
-				await AsyncStorage.setItem(
-					LocalStorageKeys.CalculatorFormValues,
-					jsonValue
-				);
+				await AsyncStorage.setItem(LocalStorageKeys.CalculatorFormValues, jsonValue);
 			} catch (e) {}
 		})();
 	}
