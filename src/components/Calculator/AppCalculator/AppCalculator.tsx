@@ -46,7 +46,6 @@ function AppCalculator() {
 						Preço
 					</AppTextInputLabel>
 					<AppMaskInput
-						style={styles.input}
 						keyboardType="decimal-pad"
 						mask={Masks.BRL_CURRENCY}
 						placeholder={"R$ 0,00"}

@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import {
+	NativeSyntheticEvent,
+	StyleProp,
 	StyleSheet,
 	Text,
 	TextInput,
+	TextInputFocusEventData,
 	TextInputProps,
+	TextStyle,
 	View,
 } from "react-native";
 import { colors } from "../../../styles/colors";
@@ -11,6 +15,11 @@ import AppInputHelper from "../AppInputHelper";
 
 interface AppTextInputProps {
 	errorMessage?: string;
+	render?: (
+		styles: Array<StyleProp<TextStyle>>,
+		onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void,
+		onFocus: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void
+	) => ReactNode;
 }
 
 function AppTextInput({
@@ -18,6 +27,7 @@ function AppTextInput({
 	style,
 	onFocus,
 	onBlur,
+	render,
 	...props
 }: TextInputProps & AppTextInputProps) {
 	const [isFocused, setIsFocused] = useState(false);
@@ -26,6 +36,23 @@ function AppTextInput({
 	useEffect(() => {
 		setLocalErrorMessage(errorMessage);
 	}, [errorMessage]);
+
+	const handleOnFocus = useCallback(
+		(e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+			setIsFocused(true);
+			setLocalErrorMessage("");
+			onFocus && onFocus(e);
+		},
+		[]
+	);
+
+	const handleOnBlur = useCallback(
+		(e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+			setIsFocused(false);
+			onBlur && onBlur(e);
+		},
+		[]
+	);
 
 	return (
 		<>
@@ -64,19 +91,15 @@ function AppTextInput({
 					></View>
 				)}
 				<View style={[styles.inputBorderRadius, styles.input]}>
-					<TextInput
-						style={[styles.text, style]}
-						onFocus={e => {
-							setIsFocused(true);
-							setLocalErrorMessage("");
-							onFocus && onFocus(e);
-						}}
-						onBlur={e => {
-							setIsFocused(false);
-							onBlur && onBlur(e);
-						}}
-						{...props}
-					/>
+					{(render &&
+						render([styles.text, style], handleOnBlur, handleOnFocus)) || (
+						<TextInput
+							style={[styles.text, style]}
+							onFocus={handleOnFocus}
+							onBlur={handleOnBlur}
+							{...props}
+						/>
+					)}
 				</View>
 			</View>
 			{localErrorMessage && (
