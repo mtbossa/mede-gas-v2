@@ -16,6 +16,7 @@ import { CoefficientHelper, PriceHelper } from "../TextHelpers";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useCalculatorForm from "../../../hooks/Calculator/useCalculatorForm";
 import useForm from "../../../hooks/Form/useForm";
+import { BannerAd, TestIds, BannerAdSize } from "react-native-google-mobile-ads";
 
 function AppCalculator() {
 	const calculatorHook = useCalculatorForm();
@@ -127,6 +128,11 @@ function AppCalculator() {
 
 			<View style={{ flex: 1 }}>
 				<Result result={calculatorHook.result} />
+			</View>
+			<View
+				style={{ position: "absolute", bottom: 0, alignItems: "center", justifyContent: "center" }}
+			>
+				<BannerAd unitId={TestIds.BANNER} size={BannerAdSize.FULL_BANNER} />
 			</View>
 		</View>
 	);

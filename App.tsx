@@ -11,6 +11,7 @@ import HelperBottomSheetProvider from "./src/contexts/HelperBottomSheet/provider
 import Pages from "./src/components/Pages";
 import { colors } from "./src/styles/colors";
 
+
 let customFonts = {
 	"Lato-Regular": require("./assets/fonts/Lato-Regular.ttf"),
 	Heebo: require("./assets/fonts/Heebo.ttf"),
@@ -49,6 +50,7 @@ export default function App() {
 						enabled={false}
 					>
 						<Pages />
+					
 					</KeyboardAvoidingView>
 				</SafeAreaView>
 			</HelperBottomSheetProvider>
