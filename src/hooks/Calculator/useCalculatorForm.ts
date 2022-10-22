@@ -38,20 +38,18 @@ export default function useCalculatorForm() {
 	const [calculatorFormValues, setCalculatorFormValues] =
 		useState<CalculatorForm>(INITIAL_FORM_STATE);
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		try {
-	// 			const jsonValue = await AsyncStorage.getItem(
-	// 				LocalStorageKeys.CalculatorFormValues
-	// 			);
-	// 			if (jsonValue) {
-	// 				const form = JSON.parse(jsonValue);
-	// 				setCalculatorFormValues(form);
-	// 				calculate(form);
-	// 			}
-	// 		} catch (e) {}
-	// 	})();
-	// }, []);
+	useEffect(() => {
+		(async () => {
+			try {
+				const jsonValue = await AsyncStorage.getItem(LocalStorageKeys.CalculatorFormValues);
+				if (jsonValue) {
+					const form = JSON.parse(jsonValue);
+					setCalculatorFormValues(form);
+					calculate(form);
+				}
+			} catch (e) {}
+		})();
+	}, []);
 
 	useEffect(() => {
 		const formFields = Object.values(calculatorFormValues) as FormField[];
