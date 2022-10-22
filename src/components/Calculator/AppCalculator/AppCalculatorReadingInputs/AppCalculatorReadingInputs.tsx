@@ -7,7 +7,7 @@ import AppTextInputLabel from "../../../Shared/AppTextInputLabel";
 import ReadingInput from "../../ReadingInput";
 import AppBottomSheetHelper from "../../../Shared/AppBottomSheetHelper";
 import MeterValuesHelper from "../../TextHelpers/MeterValuesHelper";
-import { FormField } from "../../../../hooks/Calculator/useCalculatorForm";
+import { FormField } from "../../../../hooks/Form/useForm";
 
 interface AppCalculatorReadingInputsProps {
 	style?: StyleProp<ViewStyle>;

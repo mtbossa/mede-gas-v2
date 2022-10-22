@@ -15,9 +15,11 @@ import AppBottomSheetHelper from "../../Shared/AppBottomSheetHelper/AppBottomShe
 import { CoefficientHelper, PriceHelper } from "../TextHelpers";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useCalculatorForm from "../../../hooks/Calculator/useCalculatorForm";
+import useForm from "../../../hooks/Form/useForm";
 
 function AppCalculator() {
 	const calculatorHook = useCalculatorForm();
+	const { updateFieldValue } = useForm();
 
 	return (
 		<View style={{ height: "100%", width: "100%" }}>
@@ -28,10 +30,7 @@ function AppCalculator() {
 					lowerReading={calculatorHook.calculatorFormValues.lowerReading}
 					onChangeValue={(field, value) =>
 						calculatorHook.setCalculatorFormValues(oldValues => {
-							const updatedForm = { ...oldValues };
-							updatedForm[field].value = value;
-							updatedForm[field].errors = [];
-							return updatedForm;
+							return updateFieldValue(field, value, oldValues);
 						})
 					}
 				/>
@@ -56,10 +55,7 @@ function AppCalculator() {
 						onChangeText={value => {
 							const newValue = numeral(value).value() ? value : "";
 							calculatorHook.setCalculatorFormValues(oldValues => {
-								const updatedForm = { ...oldValues };
-								updatedForm.gasPriceByKg.value = newValue;
-								updatedForm.gasPriceByKg.errors = [];
-								return updatedForm;
+								return updateFieldValue("gasPriceByKg", newValue, oldValues);
 							});
 						}}
 					/>
@@ -92,7 +88,11 @@ function AppCalculator() {
 									const updatedForm = { ...oldValues };
 									updatedForm.conversionCoefficient.value = String(e).replace(".", ",");
 									updatedForm.conversionCoefficient.errors = [];
-									return updatedForm;
+									return updateFieldValue(
+										"conversionCoefficient",
+										String(e).replace(".", ","),
+										oldValues
+									);
 								});
 							}}
 							minimumTrackTintColor="#06317a"

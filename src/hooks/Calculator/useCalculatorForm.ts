@@ -4,11 +4,7 @@ import { LocalStorageKeys } from "../../components/utils/enums/LocalStorageKeys"
 import numeral from "numeral";
 import { calculateGasSpentValues } from "../../services/GasCalculator";
 import { Keyboard } from "react-native";
-
-export interface FormField {
-	value: string;
-	errors: string[];
-}
+import { FormField } from "../Form/useForm";
 interface CalculatorForm {
 	lowerReading: FormField;
 	biggerReading: FormField;
@@ -44,7 +40,6 @@ export default function useCalculatorForm() {
 				const jsonValue = await AsyncStorage.getItem(LocalStorageKeys.CalculatorFormValues);
 				if (jsonValue) {
 					const form: CalculatorForm = JSON.parse(jsonValue);
-					console.log(numeral(form.conversionCoefficient.value).value());
 					setCoefficientValue(numeral(form.conversionCoefficient.value).value());
 					setCalculatorFormValues(form);
 					calculate(form);
