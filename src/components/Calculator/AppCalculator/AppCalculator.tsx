@@ -78,7 +78,7 @@ function AppCalculator() {
 					<View style={{ justifyContent: "center", alignItems: "center" }}>
 						<AppText>
 							<Text style={{ fontSize: 20, fontWeight: "bold" }}>
-								{calculatorHook.coefficientValue}
+								{calculatorHook.calculatorFormValues.conversionCoefficient.value}
 							</Text>
 						</AppText>
 						<Slider
@@ -86,9 +86,8 @@ function AppCalculator() {
 							minimumValue={2.0}
 							maximumValue={3.0}
 							step={0.1}
-							value={2.5}
+							value={calculatorHook.coefficientValue}
 							onValueChange={e => {
-								calculatorHook.setCoefficientValue(String(e).replace(".", ","));
 								calculatorHook.setCalculatorFormValues(oldValues => {
 									const updatedForm = { ...oldValues };
 									updatedForm.conversionCoefficient.value = String(e).replace(".", ",");

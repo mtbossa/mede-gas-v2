@@ -28,7 +28,7 @@ const INITIAL_FORM_STATE: CalculatorForm = {
 };
 
 export default function useCalculatorForm() {
-	const [coefficientValue, setCoefficientValue] = useState("2,5");
+	const [coefficientValue, setCoefficientValue] = useState(2.5);
 	const [result, setResult] = useState<Result>({
 		diffInKg: "0",
 		diffInCubicMeter: "0",
@@ -43,7 +43,9 @@ export default function useCalculatorForm() {
 			try {
 				const jsonValue = await AsyncStorage.getItem(LocalStorageKeys.CalculatorFormValues);
 				if (jsonValue) {
-					const form = JSON.parse(jsonValue);
+					const form: CalculatorForm = JSON.parse(jsonValue);
+					console.log(numeral(form.conversionCoefficient.value).value());
+					setCoefficientValue(numeral(form.conversionCoefficient.value).value());
 					setCalculatorFormValues(form);
 					calculate(form);
 				}
