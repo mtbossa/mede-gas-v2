@@ -53,14 +53,15 @@ function AppCalculator() {
 						placeholder={"R$ 0,00"}
 						maxLength={11}
 						value={calculatorHook.calculatorFormValues.gasPriceByKg.value}
-						onChangeText={value =>
+						onChangeText={value => {
+							const newValue = numeral(value).value() ? value : "";
 							calculatorHook.setCalculatorFormValues(oldValues => {
 								const updatedForm = { ...oldValues };
-								updatedForm.gasPriceByKg.value = value;
+								updatedForm.gasPriceByKg.value = newValue;
 								updatedForm.gasPriceByKg.errors = [];
 								return updatedForm;
-							})
-						}
+							});
+						}}
 					/>
 				</View>
 				<View style={{ width: "100%", marginTop: 10 }}>
